@@ -33,13 +33,13 @@ document.addEventListener("keydown", (event) => {
 let startX, startY;
 const threshold = 50; // minimum swipe distance
 
-UI.game.addEventListener('touchstart', (e) => {
+UI.board.elem.addEventListener('touchstart', (e) => {
   startX = e.touches[0].clientX;
   startY = e.touches[0].clientY;
   e.preventDefault(); // stops page scrolling
 },{ passive: false });
 
-UI.game.addEventListener('touchend', (e) => {
+UI.board.elem.addEventListener('touchend', (e) => {
     e.preventDefault(); // stops page scrolling
   const endX = e.changedTouches[0].clientX;
   const endY = e.changedTouches[0].clientY;
