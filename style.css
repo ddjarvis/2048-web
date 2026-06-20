@@ -17,8 +17,8 @@ footer {
 #background{
     --tile-gap: 2.25%;
 
-    min-width: 300px;
-    min-height: 500px;
+    min-width: 200px;
+    min-height: 300px;
     height: 40%;
     aspect-ratio: 1/1;
     background-color: #bbada0;
