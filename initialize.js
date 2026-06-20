@@ -85,6 +85,7 @@ function initializeGame() {
 }
 
 initializeGame();
+armTouchListeners();
 /*
 BOARD = [
     [2, 4, 16, 128],

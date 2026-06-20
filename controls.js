@@ -30,31 +30,34 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault(); // stops page scrolling
 });
 
+
 let startX, startY;
 const threshold = 50; // minimum swipe distance
-
-UI.board.elem.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-  e.preventDefault(); // stops page scrolling
-},{ passive: false });
-
-UI.board.elem.addEventListener('touchend', (e) => {
+function armTouchListeners() {
+    UI.board.elem.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
     e.preventDefault(); // stops page scrolling
-  const endX = e.changedTouches[0].clientX;
-  const endY = e.changedTouches[0].clientY;
+    },{ passive: false });
 
-  const diffX = startX - endX;
-  const diffY = startY - endY;
+    UI.board.elem.addEventListener('touchend', (e) => {
+        e.preventDefault(); // stops page scrolling
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
 
-  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
-    if (diffX > threshold) action('left');
-    else if (diffX < -threshold) action('right');
-  } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > threshold) {
-    if (diffY > threshold) action('up');
-    else if (diffY < -threshold) action('down');
-  }
-},{ passive: false });
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+        if (diffX > threshold) action('left');
+        else if (diffX < -threshold) action('right');
+    } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > threshold) {
+        if (diffY > threshold) action('up');
+        else if (diffY < -threshold) action('down');
+    }
+    },{ passive: false });
+}
+
 
 
 function action(direction) {
