@@ -33,12 +33,14 @@ document.addEventListener("keydown", (event) => {
 let startX, startY;
 const threshold = 50; // minimum swipe distance
 
-document.addEventListener('touchstart', (e) => {
+UI.game.addEventListener('touchstart', (e) => {
   startX = e.touches[0].clientX;
   startY = e.touches[0].clientY;
-});
+  e.preventDefault(); // stops page scrolling
+},{ passive: false });
 
-document.addEventListener('touchend', (e) => {
+UI.game.addEventListener('touchend', (e) => {
+    e.preventDefault(); // stops page scrolling
   const endX = e.changedTouches[0].clientX;
   const endY = e.changedTouches[0].clientY;
 
@@ -48,13 +50,11 @@ document.addEventListener('touchend', (e) => {
   if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
     if (diffX > threshold) action('left');
     else if (diffX < -threshold) action('right');
-    e.preventDefault(); // stops page scrolling
   } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > threshold) {
     if (diffY > threshold) action('up');
     else if (diffY < -threshold) action('down');
-    e.preventDefault(); // stops page scrolling
   }
-});
+},{ passive: false });
 
 
 function action(direction) {
