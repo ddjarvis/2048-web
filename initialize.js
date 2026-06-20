@@ -4,7 +4,11 @@ const GAME = {
         win: false,
         lose: false,
     },
-    score: 0,
+    score: {
+        now: 0,
+        best: 0,
+    },
+
     specialTiles: {
         merged: [],
         new: [],
@@ -66,7 +70,7 @@ function checkLose() {
 
 function drawConsole() {
     console.table(BOARD);
-    console.log(`Score: ${GAME.score}`);
+    console.log(`Score: ${GAME.score.now}`);
     if(GAME.state.win) { console.log('You Win!'); }
     else if(GAME.state.lose) { console.log('You Lose!'); }
 }
@@ -76,7 +80,7 @@ function arraysEqual(a, b) {
 
 function initializeGame() {
     BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
-    GAME.score = 0;
+    GAME.score.now = 0;
     GAME.state.win = false;
     GAME.state.lose = false;
     GAME.specialTiles.merged = [];
@@ -85,7 +89,6 @@ function initializeGame() {
 }
 
 initializeGame();
-armTouchListeners();
 /*
 BOARD = [
     [2, 4, 16, 128],

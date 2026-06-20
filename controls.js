@@ -87,7 +87,7 @@ function action(direction) {
     checkLose();
     if(!GAME.state.lose && !GAME.state.win) {
         drawConsole();
-        updateUI_board();
+        updateUI();
     }
     console.log(`Action: ${action}`);
 }
@@ -191,7 +191,8 @@ function arrayMerge(arr, xyr = {}) {
             newArr[i] = val;
             newArr[i+1] = 0;
             
-            GAME.score += val;
+            GAME.score.now += val;
+            GAME.score.best = Math.max(GAME.score.now, GAME.score.best);
 
             let row, col;
             if(x === null) {
