@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>2048</title>
+	<meta name="description" content="2048 game">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" href="favicon.ico">
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>2048</h1>
+			<p>HTML5 boilerplate for the 2048 project.</p>
+		</header>
+
+		<main>
+			<!-- Game root -->
+             <!-- Game will be mounted here. -->
+			<div id="game">
+                <div id="gameHeader"></div>
+                <div id="gameBoard"></div>
+            </div>
+		</main>
+
+		<footer>
+			<small>&copy; <span id="year"></span></small>
+		</footer>
+	</div>
+
+	<script>
+		// Small script to set year
+		document.getElementById('year').textContent = new Date().getFullYear();
+	</script>
+    <script src="initialize.js"></script>
+    <script src="controls.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>

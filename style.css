@@ -1,0 +1,103 @@
+.container{
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+#background{
+    --tile-gap: 2.25%;
+
+    min-width: 500px;
+    width: 100%;
+    min-height: 500px;
+    height: 70%;
+    aspect-ratio: 1/1;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: var(--tile-gap);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--tile-gap);
+}
+
+#gameBoard .tile {
+    min-height: 50px;
+    min-width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+
+    display: inline-flex;       /* inline-block → inline-flex */
+    justify-content: center;    /* horizontal centering */
+    align-items: center;        /* vertical centering */
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+#gameBoard {
+    .tile-bg {
+        background-color: #CDC1B4;
+    }
+    .tile-2 {
+        background-color: #EEE4DA;
+        color: #776E65;
+    }
+    .tile-4 {
+        background-color: #EDE0C8;
+        color: #776E65;
+    }
+    .tile-8 {
+        background-color: #F2B179;
+        color: #F9F6F2;
+    }
+    .tile-16 {
+        background-color: #F59563;
+        color: #F9F6F2;
+    }
+    .tile-32 {
+        background-color: #F67C5F;
+        color: #F9F6F2;
+    }
+    .tile-64 {
+        background-color: #F65E3B;
+        color: #F9F6F2;
+    }
+    .tile-128 {
+        background-color: #EDCF72;
+        color: #F9F6F2;
+    }
+    .tile-256 {
+        background-color: #EDCC61;
+        color: #F9F6F2;
+    }
+    .tile-512 {
+        background-color: #EDC850;
+        color: #F9F6F2;
+    }
+    .tile-1024 {
+        background-color: #EDC53F;
+        color: #F9F6F2;
+    }
+    .tile-2048 {
+        background-color: #EDC22E;
+        color: #F9F6F2;
+    }
+}
+
+.tile.new {
+  animation: appear 0.315s ease;
+}
+@keyframes appear {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.tile.merged {
+  animation: pop 0.3s ease;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;   /* full weight range */
+  font-stretch: 75% 125%; /* full width range */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: italic;
+}
