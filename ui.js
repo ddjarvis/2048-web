@@ -54,7 +54,20 @@ function initializeUI_backgroundTile(xy = {}) {
     console.log({x,y,id});
     return tileBg;
 }
-
+function updateUI() {
+    updateUI_head();
+    updateUI_board();
+}
+function updateUI_head() {
+    const scoreBox = document.querySelector('.field-value.score');
+    const bestBox = document.querySelector('.field-value.best');
+    console.log({
+        score: GAME.score.now,
+        best: GAME.score.best,
+    });
+    scoreBox.innerText = GAME.score.now;
+    bestBox.innerText = GAME.score.best;
+}
 function updateUI_board() {
     for(let y = 0; y < 4; y++) {
         for(let x = 0; x < 4; x++) {
@@ -90,4 +103,4 @@ function updateUI_board() {
 
 initializeUI_background();
 
-updateUI_board();
+updateUI();

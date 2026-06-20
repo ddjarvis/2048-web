@@ -8,6 +8,7 @@
 	<meta name="description" content="2048 game">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="gameHeader.css">
     <link rel="stylesheet" href="style.css">
 	<link rel="icon" href="favicon.ico">
 	</style>
@@ -16,14 +17,32 @@
 	<div class="container">
 		<header>
 			<h1>2048</h1>
-			<p>HTML5 boilerplate.</p>
+			<!-- <p>HTML5 boilerplate.</p> -->
 		</header>
 
 		<main>
 			<!-- Game root -->
              <!-- Game will be mounted here. -->
 			<div id="game">
-                <div id="gameHeader"></div>
+                <div id="gameHeader">
+					<div id="scoreBox" class="field-box">
+						<span class="score field-name">
+							Score
+						</span>
+						<span id="score-value" class="score field-value">
+							0
+						</span>
+					</div>
+					<div id="bestBox" class="field-box">
+						<span class="best field-name">
+							Best
+						</span>
+						<span id="best-value" class="best field-value">
+							0
+						</span>
+					</div>
+					<button id="resetBtn">New Game</button>
+				</div>
                 <div id="gameBoard"></div>
             </div>
 		</main>
