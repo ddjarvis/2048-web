@@ -16,6 +16,8 @@ footer {
 
 #background{
     --tile-gap: 2.25%;
+    
+    border: 0.3px solid #957d63;
 
     min-width: 200px;
     min-height: 300px;
@@ -28,6 +30,9 @@ footer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--tile-gap);
+    
+    /* border: 0.5px solid #5a4b3c; */
+    box-shadow: 4px 5px 10px 0px #5a4b3c80;
 }
 
 #gameBoard .tile {
@@ -42,6 +47,9 @@ footer {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 45px;
     font-weight: 700;
+
+    border: 0.3px solid #957d63;
+    box-shadow: 2px 2px 5px 0px #5a4b3ca0;
 }
 
 #gameBoard {
