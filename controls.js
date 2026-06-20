@@ -45,12 +45,14 @@ document.addEventListener('touchend', (e) => {
   const diffX = startX - endX;
   const diffY = startY - endY;
 
-  if (Math.abs(diffX) > Math.abs(diffY)) {
+  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
     if (diffX > threshold) action('left');
     else if (diffX < -threshold) action('right');
-  } else {
+    e.preventDefault(); // stops page scrolling
+  } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > threshold) {
     if (diffY > threshold) action('up');
     else if (diffY < -threshold) action('down');
+    e.preventDefault(); // stops page scrolling
   }
 });
 
