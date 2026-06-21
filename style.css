@@ -45,7 +45,7 @@ footer {
     justify-content: center;    /* horizontal centering */
     align-items: center;        /* vertical centering */
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 45px;
+    font-size: 2.7rem;
     font-weight: 700;
 
     border: 0.3px solid #957d63;
@@ -83,22 +83,27 @@ footer {
     .tile-128 {
         background-color: #EDCF72;
         color: #F9F6F2;
+        font-size: 2.2rem;
     }
     .tile-256 {
         background-color: #EDCC61;
         color: #F9F6F2;
+        font-size: 2.2rem;
     }
     .tile-512 {
         background-color: #EDC850;
         color: #F9F6F2;
+        font-size: 2.2rem;
     }
     .tile-1024 {
         background-color: #EDC53F;
         color: #F9F6F2;
+        font-size: 1.7rem;
     }
     .tile-2048 {
         background-color: #EDC22E;
         color: #F9F6F2;
+        font-size: 1.7rem;
     }
 }
 

@@ -19,6 +19,7 @@ function initializeUI_background() {
     const bg = document.createElement('div');
     bg.id = 'background';
 
+    console.group('addTile');
     const tiles = [];
     for(let y = 0; y < 4; y++) {
         for(let x = 0; x < 4; x++) {
@@ -33,6 +34,7 @@ function initializeUI_background() {
             tiles.push(obj);
         }
     }
+    console.groupEnd('addTile');
 
     bg.appendChild(frag);
     UI.board.elem.appendChild(bg);

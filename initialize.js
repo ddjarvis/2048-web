@@ -12,6 +12,7 @@ const GAME = {
     specialTiles: {
         merged: [],
         new: [],
+        moved: [],
     },
 }
 function initializeBoard() {
@@ -51,20 +52,39 @@ function addRandomTiles() {
 }
 
 function checkLose() {
-    const emptyCells = getEmptyCells();
-    if (emptyCells.length > 0) { return false; }
-
+    let isLost = true;
+    console.group('checkLose');
     for(let x = 0; x < 4; x++) {
+        if(!isLost) { break; }
+        console.log(`x: ${x}`);
         for(let y = 0; y < 3; y++) {
-            if(BOARD[x][y] === BOARD[x][y+1]) { return false; }
+            if(!isLost) { break; }
+            let valA = BOARD[x][y];
+            let valB = BOARD[x][y+1];
+            console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x}][${y+1}] = ${valB}`);
+            if(valA === valB) { isLost = false; }
         }
     }
     for(let y = 0; y < 4; y++) {
+        if(!isLost) { break; }
         for(let x = 0; x < 3; x++) {
-            if(BOARD[x][y] === BOARD[x+1][y]) { return false; }
+            if(!isLost) { break; }
+            let valA = BOARD[x][y];
+            let valB = BOARD[x+1][y];
+            console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x+1}][${y}] = ${valB}`);
+            if(valA === valB) { isLost = false; }
         }
     }
-    GAME.state.lose = true;
+    console.groupEnd('checkLose');
+    !isLost ? console.log('Not Lost!') : '';
+
+    if(isLost) {
+        const emptyCells = getEmptyCells();
+        if (emptyCells.length > 0) { isLost = false; }
+    }
+    
+    GAME.state.lose = isLost;
+    isLost ? console.log('You Lose!') : '';
     return true;
 }
 
@@ -74,9 +94,24 @@ function drawConsole() {
     if(GAME.state.win) { console.log('You Win!'); }
     else if(GAME.state.lose) { console.log('You Lose!'); }
 }
-function arraysEqual(a, b) {
-  return a.length === b.length && a.every((val, i) => val === b[i]);
+
+function deepEqual(a, b) {
+  if (a === b) return true; // handles primitives + same reference
+  if (typeof a !== "object" || typeof b !== "object" || a == null || b == null) {
+    return false;
+  }
+
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+  if (keysA.length !== keysB.length) return false;
+
+  return keysA.every(key => deepEqual(a[key], b[key]));
 }
+
+function arraysEqual(a, b) {
+  return a.length === b.length && a.every((val, i) => deepEqual(val, b[i]));
+}
+
 
 function initializeGame() {
     BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
