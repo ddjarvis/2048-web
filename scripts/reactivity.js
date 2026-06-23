@@ -32,7 +32,7 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
 
         // Set up a subscription to update the element when the value changes
         value.subscribe(() => {
-            element.textContent = value.get();
+            element.innerText = value.get();
         });
 
         // Update the value when the element changes

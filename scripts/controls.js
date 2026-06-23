@@ -217,7 +217,7 @@ function arrayMerge(arr, xyr = {}) {
             // if (UI.data.scores.current > UI.data.scores.best) {
             //     UI.data.scores.best = UI.data.scores.current;
             // }
-            
+            addScore(val);
 
             let row, col;
             if(x === null) {

@@ -12,12 +12,12 @@ bindReactiveElements(Reactive);
 Reactive.score.subscribe(() => {
   const val = Reactive.score.get();
   const best = Reactive.best.get();
-
+  console.log('updated score: '+val);
   GAME.stats.score = val;
   UI.data.scores.current = val;
 
   if (val > best) {
-    Reactive.best.set = val;
+    Reactive.best.set(val);
   }
 });
 Reactive.best.subscribe(() => {

@@ -46,16 +46,20 @@ function updateUI() {
     updateUI_board();
 }
 function updateUI_head() {
-    const scoreBox = document.querySelector('.field-value.score');
-    const bestBox = document.querySelector('.field-value.best');
-    let scoreCurrent = UI.data.scores.current;
-    let scoreBest = UI.data.scores.best;
+    // const scoreBox = document.querySelector('.field-value.score');
+    // const bestBox = document.querySelector('.field-value.best');
+    let score = UI.data.scores.current;
+    let best = UI.data.scores.best;
+    let moves = UI.data.moves;
+    let time = UI.data.time;
     console.log({
-        score: scoreCurrent,
-        best: scoreBest,
+        score,
+        best,
+        moves,
+        time,
     });
-    scoreBox.innerText = scoreCurrent;
-    bestBox.innerText = scoreBest;
+    // scoreBox.innerText = scoreCurrent;
+    // bestBox.innerText = scoreBest;
 }
 function updateUI_board() {
     for(let y = 0; y < 4; y++) {
