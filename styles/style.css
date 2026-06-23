@@ -8,11 +8,11 @@
 }
 
 header {
-    background-color: red;
+    /* background-color: red; */
 }
 
 main{
-    background-color: blue;
+    /* background-color: blue; */
     flex: 1;
     max-width: 500px;
     margin: 40px auto;
@@ -20,12 +20,16 @@ main{
 }
 
 footer {
-    background-color: green;
+    background-color: #3a3a3a;
+    color: #fdfdfd;
     font-family: 'Open Sans', Arial, sans-serif;
-    font-weight: 500;
-    
+    font-weight: 600;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .footer-name {
-        font-size: 13px;
+        font-size: 15px;
     }
 }
 
