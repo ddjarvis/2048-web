@@ -90,9 +90,10 @@ function action(direction) {
     if (hasChange) {
         addRandomTile();
         increaseMove();
+        checkLose();
+        saveData();
+        updateUI();
     }
-    checkLose();
-    updateUI();
 }
 
 function action_left() {

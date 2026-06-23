@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="./styles/gameHeader.css">
     <link rel="stylesheet" href="./styles/style.css">
 	<link rel="icon" href="./assets/favicon.ico">
+    <script defer src="./scripts/events.js"></script>
+    <script defer src="./scripts/reactivity.js"></script>
+    <script defer src="./scripts/globals.js"></script>
+    <script defer src="./scripts/reactiveBindings.js"></script>
+    <script defer src="./scripts/dataStorage.js"></script>
+    <script defer src="./scripts/controls.js"></script>
+    <script defer src="./scripts/initialize.js"></script>
+    <script defer src="./scripts/ui.js"></script>
 	</style>
 </head>
 <body>
@@ -41,7 +49,7 @@
 							0
 						</span>
 					</div>
-					<button id="resetBtn" onclick="action('reset');">New Game</button>
+					<button id="resetBtn" onclick="newGame();">New Game</button>
 				</div>
                 <div id="gameBoard"></div>
             </div>
@@ -56,12 +64,5 @@
 		// Small script to set year
 		document.getElementById('year').textContent = new Date().getFullYear();
 	</script>
-    <script src="./scripts/reactivity.js"></script>
-    <script src="./scripts/globals.js"></script>
-    <script src="./scripts/reactiveBindings.js"></script>
-    <script src="./scripts/initialize.js"></script>
-    <script src="./scripts/events.js"></script>
-    <script src="./scripts/controls.js"></script>
-    <script src="./scripts/ui.js"></script>
 </body>
 </html>

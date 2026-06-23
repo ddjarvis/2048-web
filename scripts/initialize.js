@@ -24,7 +24,6 @@ function addRandomTile() {
         GAME.specialTiles.new.push({value: val, row: i, col: j});
     }
 }
-
 function addRandomTiles() {
     const emptyCells = getEmptyCells();
     let countThreshold = 0.1 + (emptyCells.length / 16) * 0.4;
@@ -98,15 +97,11 @@ function arraysEqual(a, b) {
 
 
 function initializeGame() {
-    BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
-    Reactive.moves.value = 0;
-    Reactive.score.value = 0;
-    Reactive.time.value = 0;
-    Reactive.win.value = false;
-    Reactive.lose.value = false;
-    GAME.specialTiles.merged = [];
-    GAME.specialTiles.new = [];
-    addRandomTiles(BOARD);
+    newSession();
+    if(!loadData()){
+        addRandomTiles(BOARD);
+    }
+    console.log(BOARD);
 }
 
 initializeGame();
