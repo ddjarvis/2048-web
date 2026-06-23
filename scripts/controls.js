@@ -87,7 +87,10 @@ function action(direction) {
             break;
     }
     console.log(`Action: ${action}`);
-    if (hasChange) { addRandomTile(); }
+    if (hasChange) {
+        addRandomTile();
+        increaseMove();
+    }
     checkLose();
     updateUI();
 }
@@ -209,12 +212,12 @@ function arrayMerge(arr, xyr = {}) {
             newArr[i] = val;
             newArr[i+1] = 0;
             
-            GAME.stats.score += val;
-            UI.data.scores.current = GAME.stats.score;
-            if (UI.data.scores.current > UI.data.scores.best) {
-                UI.data.scores.best = UI.data.scores.current;
-            }
-            
+            // GAME.stats.score += val;
+            // UI.data.scores.current = GAME.stats.score;
+            // if (UI.data.scores.current > UI.data.scores.best) {
+            //     UI.data.scores.best = UI.data.scores.current;
+            // }
+            addScore(val);
 
             let row, col;
             if(x === null) {

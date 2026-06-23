@@ -29,7 +29,7 @@
 						<span class="score field-name">
 							Score
 						</span>
-						<span id="score-value" class="score field-value">
+						<span id="score-value" class="score field-value" data-reactive="score">
 							0
 						</span>
 					</div>
@@ -37,7 +37,7 @@
 						<span class="best field-name">
 							Best
 						</span>
-						<span id="best-value" class="best field-value">
+						<span id="best-value" class="best field-value" data-reactive="best">
 							0
 						</span>
 					</div>
@@ -56,8 +56,11 @@
 		// Small script to set year
 		document.getElementById('year').textContent = new Date().getFullYear();
 	</script>
+    <script src="./scripts/reactivity.js"></script>
     <script src="./scripts/globals.js"></script>
+    <script src="./scripts/reactiveBindings.js"></script>
     <script src="./scripts/initialize.js"></script>
+    <script src="./scripts/events.js"></script>
     <script src="./scripts/controls.js"></script>
     <script src="./scripts/ui.js"></script>
 </body>
