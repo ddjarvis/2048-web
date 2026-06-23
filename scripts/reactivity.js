@@ -1,24 +1,32 @@
 function reactiveValue(initialValue) {
-    let value = initialValue;
-    const subscribers = [];
+  let value = initialValue;
+  const subscribers = [];
 
-    function get() {
+  const handler = {
+    get(target, prop) {
+      if (prop === 'subscribe') {
+        return (subscriber) => subscribers.push(subscriber);
+      }
+      if (prop === 'value') {
         return value;
-    }
-
-    function set(newValue) {
+      }
+      return Reflect.get(target, prop);
+    },
+    set(target, prop, newValue) {
+      if (prop === 'value') {
         if (value !== newValue) {
-            value = newValue;
-            subscribers.forEach((subscriber) => subscriber());
+          value = newValue;
+          subscribers.forEach((subscriber) => subscriber(value));
         }
+        return true;
+      }
+      return Reflect.set(target, prop, newValue);
     }
+  };
 
-    function subscribe(subscriber) {
-      subscribers.push(subscriber);
-    }
-
-    return { get, set, subscribe };
+  return new Proxy({}, handler);
 }
+
 
 function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
     const reactiveElements = document.querySelectorAll(`[data-${label}]`);
@@ -28,29 +36,29 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
         if (!ReactiveStore[name]) {
             ReactiveStore[name] = reactiveValue('');
         }
-        const value = ReactiveStore[name];
+        const data = ReactiveStore[name];
 
         // Set up a subscription to update the element when the value changes
-        value.subscribe(() => {
-            element.innerText = value.get();
+        data.subscribe(() => {
+            element.innerText = data.value;
         });
 
         // Update the value when the element changes
         element.addEventListener('input', (event) => {
-            value.set(event.target.value);
+            data.value = (event.target.value);
         });
     });
 }
 
 function reactiveExpression(fn, ...values) {
-    const result = fn(...values.map((value) => value.get()));
-    const dependencies = values.filter((value) => value instanceof ReactiveValue);
+    const result = fn(...values.map((data) => data.value));
+    const dependencies = values.filter((data) => data instanceof ReactiveValue);
 
     const reactiveValue = reactiveValue(result);
 
     dependencies.forEach((dependency) => {
         dependency.subscribe(() => {
-            reactiveValue.set(fn(...dependencies.map((value) => value.get())));
+            reactiveValue.set(fn(...dependencies.map((data) => data.value)));
         });
     });
 

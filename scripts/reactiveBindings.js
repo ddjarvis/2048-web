@@ -10,27 +10,27 @@ const Reactive = {
 bindReactiveElements(Reactive);
 
 Reactive.score.subscribe(() => {
-  const val = Reactive.score.get();
-  const best = Reactive.best.get();
+  const val = Reactive.score.value;
+  const best = Reactive.best.value;
   console.log('updated score: '+val);
   GAME.stats.score = val;
   UI.data.scores.current = val;
 
   if (val > best) {
-    Reactive.best.set(val);
+    Reactive.best.value = val;
   }
 });
 Reactive.best.subscribe(() => {
-  const val = Reactive.best.get();
+  const val = Reactive.best.value;
   UI.data.scores.best = val;
 });
 Reactive.moves.subscribe(() => {
-  const val = Reactive.moves.get();
+  const val = Reactive.moves.value;
   GAME.stats.moves = val;
   UI.data.moves = val;
 });
 Reactive.time.subscribe(() => {
-  const val = Reactive.time.get();
+  const val = Reactive.time.value;
   GAME.stats.time = val;
   UI.data.time = val;
 });

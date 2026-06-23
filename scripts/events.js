@@ -1,11 +1,11 @@
 
 function addScore(add) {
-    const score = Reactive.score.get();
-    Reactive.score.set(score + add);
+    const score = Reactive.score;
+    score.value = score.value + add;
 }
 
 function increaseMove() {
-    const moves = Reactive.moves.get();
-    Reactive.moves.set(moves + 1);
+    const moves = Reactive.moves;
+    moves.value = moves.value + 1;
 }
 

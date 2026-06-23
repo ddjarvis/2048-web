@@ -99,11 +99,11 @@ function arraysEqual(a, b) {
 
 function initializeGame() {
     BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
-    Reactive.moves.set(0);
-    Reactive.score.set(0);
-    Reactive.time.set(0);
-    Reactive.win.set(false);
-    Reactive.lose.set(false);
+    Reactive.moves.value = 0;
+    Reactive.score.value = 0;
+    Reactive.time.value = 0;
+    Reactive.win.value = false;
+    Reactive.lose.value = false;
     GAME.specialTiles.merged = [];
     GAME.specialTiles.new = [];
     addRandomTiles(BOARD);
