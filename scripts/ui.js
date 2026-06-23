@@ -1,18 +1,3 @@
-const UI = {
-    game: document.getElementById('game'),
-    head: {
-        elem: document.getElementById('gameHeader'),
-    },
-    board: {
-        elem: document.getElementById('gameBoard'),
-        bg: {
-            main: {
-            },
-            tile: [],
-        },
-    },
-}
-
 function initializeUI_background() {
     const frag = document.createDocumentFragment();
 
@@ -63,12 +48,14 @@ function updateUI() {
 function updateUI_head() {
     const scoreBox = document.querySelector('.field-value.score');
     const bestBox = document.querySelector('.field-value.best');
+    let scoreCurrent = UI.data.scores.current;
+    let scoreBest = UI.data.scores.best;
     console.log({
-        score: GAME.score.now,
-        best: GAME.score.best,
+        score: scoreCurrent,
+        best: scoreBest,
     });
-    scoreBox.innerText = GAME.score.now;
-    bestBox.innerText = GAME.score.best;
+    scoreBox.innerText = scoreCurrent;
+    bestBox.innerText = scoreBest;
 }
 function updateUI_board() {
     for(let y = 0; y < 4; y++) {

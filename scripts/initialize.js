@@ -1,20 +1,4 @@
-let BOARD;
-const GAME = {
-    state: {
-        win: false,
-        lose: false,
-    },
-    score: {
-        now: 0,
-        best: 0,
-    },
 
-    specialTiles: {
-        merged: [],
-        new: [],
-        moved: [],
-    },
-}
 function initializeBoard() {
     BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
 }
@@ -90,7 +74,7 @@ function checkLose() {
 
 function drawConsole() {
     console.table(BOARD);
-    console.log(`Score: ${GAME.score.now}`);
+    console.log(`Score: ${GAME.stats.score}`);
     if(GAME.state.win) { console.log('You Win!'); }
     else if(GAME.state.lose) { console.log('You Lose!'); }
 }
@@ -115,7 +99,10 @@ function arraysEqual(a, b) {
 
 function initializeGame() {
     BOARD = Array.from({ length: 4 }, () => Array(4).fill(0));
-    GAME.score.now = 0;
+    GAME.stats.moves = 0;
+    GAME.stats.time = 0;
+    GAME.stats.score = 0;
+    UI.data.scores.current = 0;
     GAME.state.win = false;
     GAME.state.lose = false;
     GAME.specialTiles.merged = [];

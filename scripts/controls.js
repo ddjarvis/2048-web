@@ -209,8 +209,12 @@ function arrayMerge(arr, xyr = {}) {
             newArr[i] = val;
             newArr[i+1] = 0;
             
-            GAME.score.now += val;
-            GAME.score.best = Math.max(GAME.score.now, GAME.score.best);
+            GAME.stats.score += val;
+            UI.data.scores.current = GAME.stats.score;
+            if (UI.data.scores.current > UI.data.scores.best) {
+                UI.data.scores.best = UI.data.scores.current;
+            }
+            
 
             let row, col;
             if(x === null) {
