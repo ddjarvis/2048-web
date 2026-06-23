@@ -4,7 +4,7 @@ function initializeUI_background() {
     const bg = document.createElement('div');
     bg.id = 'background';
 
-    console.group('addTile');
+    // console.group('addTile');
     const tiles = [];
     for(let y = 0; y < 4; y++) {
         for(let x = 0; x < 4; x++) {
@@ -19,7 +19,7 @@ function initializeUI_background() {
             tiles.push(obj);
         }
     }
-    console.groupEnd('addTile');
+    // console.groupEnd('addTile');
 
     bg.appendChild(frag);
     UI.board.elem.appendChild(bg);
@@ -38,7 +38,7 @@ function initializeUI_backgroundTile(xy = {}) {
     tileBg.dataset.column = x;
     tileBg.dataset.row = y;
     tileBg.dataset.value = 0;
-    console.log({x,y,id});
+    // console.log({x,y,id});
     return tileBg;
 }
 function updateUI() {
