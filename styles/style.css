@@ -1,18 +1,38 @@
-footer {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-weight: 500;
-    
-    .footer-name {
-        font-size: 13px;
-    }
+.container {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: black; */
 }
 
+header {
+    /* background-color: red; */
+}
 
-.container{
+main{
+    /* background-color: blue; */
+    flex: 1;
     max-width: 500px;
     margin: 40px auto;
     padding: 20px;
 }
+
+footer {
+    background-color: #3a3a3a;
+    color: #fdfdfd;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .footer-name {
+        font-size: 15px;
+    }
+}
+
 
 #background{
     --tile-gap: 2.25%;
