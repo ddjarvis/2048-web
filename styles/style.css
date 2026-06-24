@@ -14,8 +14,8 @@ header {
 main{
     /* background-color: blue; */
     flex: 1;
-    max-width: 500px;
-    margin: 40px auto;
+    width: 90%;
+    margin: 20px auto;
     padding: 20px;
 }
 
@@ -127,6 +127,16 @@ footer {
         background-color: #EDC22E;
         color: #F9F6F2;
         font-size: 1.7rem;
+    }
+}
+
+#stateArea {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .gameStatus {
+        font-weight: 700;
     }
 }
 

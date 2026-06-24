@@ -66,8 +66,9 @@ function checkLose() {
         if (emptyCells.length > 0) { isLost = false; }
     }
     
-    GAME.state.lose = isLost;
-    isLost ? console.log('You Lose!') : '';
+    if (isLost) {
+        Reactive.lose.value = true;
+    }
     return true;
 }
 

@@ -34,3 +34,20 @@ Reactive.time.subscribe(() => {
   GAME.stats.time = val;
   UI.data.time = val;
 });
+
+reactiveExpression((win,lose) => {
+  if (win) {
+    GAME.state.win = true;
+    GAME.state.lose = false;
+    winState();
+  }
+  else if (lose) {
+    GAME.state.win = false;
+    GAME.state.lose = true;
+    loseState();
+  }
+  else {
+    resetState();
+  }
+},
+Reactive.win, Reactive.lose);
