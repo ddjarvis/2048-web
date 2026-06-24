@@ -1,5 +1,7 @@
 /*
-=-=-= Key Listeners =-=-=
+=====================================================================
+                        KEYBOARD LISTENERS
+=====================================================================
 */
 
 document.addEventListener("keydown", (event) => {
@@ -31,6 +33,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 
+/*
 let startX, startY;
 const threshold = 50; // minimum swipe distance
 document.addEventListener('touchstart', (e) => {
@@ -56,192 +59,66 @@ if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
 }
 },{ passive: false });
 
+*/
 
-function action(direction) {
-    if ((direction !== 'reset') && (GAME.state.win || GAME.state.lose)) {
+let xDown = null;
+let yDown = null;
+let swipeDirection = null;
+
+const touchArea = document.getElementById('gameBoard');
+
+touchArea.addEventListener('touchstart', handleTouchStart, false);
+touchArea.addEventListener('touchmove', handleTouchMove, { passive: false });
+touchArea.addEventListener('touchend', handleTouchEnd, false);
+
+function handleTouchStart(evt) {
+    const firstTouch = evt.touches[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+}
+
+function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
         return;
     }
-    let action = '';
-    let hasChange = false;
-    switch (direction.toLowerCase()) {
-        case 'up':
-            action = 'up';
-            hasChange = action_up();
-            break;
-        case 'down':
-            action = 'down';
-            hasChange = action_down();
-            break;
-        case 'left':
-            action = 'left';
-            hasChange = action_left();
-            break;
-        case 'right':
-            action = 'right';
-            hasChange = action_right();
-            break;
-        case 'reset':
-            initializeGame();
-            break;
-        default:
-            break;
+
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
+
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        evt.preventDefault();
+        if (xDiff > 0) {
+            /* left swipe */ 
+            console.log('Swipe Left');
+            swipeDirection = 'left';
+        } else {
+            /* right swipe */
+            console.log('Swipe Right');
+            swipeDirection = 'right';
+        }  
+    } else {
+        evt.preventDefault();
+        if (yDiff > 0) {
+            /* up swipe */ 
+            console.log('Swipe Up');
+            swipeDirection = 'up';
+        } else { 
+            /* down swipe */
+            console.log('Swipe Down');
+            swipeDirection = 'down';
+        }  
     }
-    console.log(`Action: ${action}`);
-    if (hasChange) {
-        addRandomTile();
-        increaseMove();
-        checkLose();
-        saveData();
-        updateUI();
-    }
+
+    xDown = null;
+    yDown = null;  
 }
 
-function action_left() {
-    let hasChange = false;
-    for (let y = 0; y <= 3; y++) {
-       let arr = [];
-       let newArr = [];
-
-        for (let x = 0; x <= 3; x++) {
-            arr.push(BOARD[y][x]);
-        }
-
-        newArr = arrayProcess(arr, {x: null, y});
-        if (!arraysEqual(arr, newArr) ) { hasChange = true; }
-        
-        for (let x = 0; x <= 3; x++) {
-            let i = x;
-            BOARD[y][x] = newArr[i];
-        }
-    }
-    return hasChange;
-}
-function action_right() {
-    let hasChange = false;
-    for (let y = 0; y <= 3; y++) {
-       let arr = [];
-       let newArr = [];
-
-        for (let x = 3; x >= 0; x--) {
-            arr.push(BOARD[y][x]);
-        }
-
-        newArr = arrayProcess(arr, {x: null, y, rev: true});
-        if (!arraysEqual(arr, newArr) ) { hasChange = true; }
-        
-        for (let x = 3; x >= 0; x--) {
-            let i = 3-x;
-            BOARD[y][x] = newArr[i];
-        }
-        console.log({arr,newArr});
-    }
-    return hasChange;
-}
-function action_up() {
-    let hasChange = false;
-    for (let x = 0; x <= 3; x++) {
-       let arr = [];
-       let newArr = [];
-
-        for (let y = 0; y <= 3; y++) {
-            arr.push(BOARD[y][x]);
-        }
-
-        newArr = arrayProcess(arr, {x, y: null});
-        if (!arraysEqual(arr, newArr) ) { hasChange = true; }
-        
-        for (let y = 0; y <= 3; y++) {
-            let i = y;
-            BOARD[y][x] = newArr[i];
-        }
-    }
-    return hasChange;
-}
-function action_down() {
-    let hasChange = false;
-    for (let x = 0; x <= 3; x++) {
-       let arr = [];
-       let newArr = [];
-
-        for (let y = 3; y >= 0; y--) {
-            arr.push(BOARD[y][x]);
-        }
-
-        newArr = arrayProcess(arr, {x, y: null, rev: true});
-        if (!arraysEqual(arr, newArr) ) { hasChange = true; }
-        
-        for (let y = 3; y >= 0; y--) {
-            let i = 3-y;
-            BOARD[y][x] = newArr[i];
-        }
-        //console.log({arr,newArr});
-    }
-    return hasChange;
+function handleTouchEnd(evt) {
+    // Reset values or handle end of touch event
+    action(swipeDirection);
+    console.log(`Swipe Direction: ${swipeDirection}`);
 }
 
-function arrayCompress(arr, xyr = {}) {
-    const { x, y, rev } = { rev: false, ...xyr};
-    const newArr = [
-        ...arr.filter(i => i > 0),
-        ...Array(4).fill(0)
-    ].slice(0, 4);
-    console.log(arr);
-    console.log(newArr);
-    if (!arraysEqual(arr,newArr)) {
-        let i;
-        let row, col, direction;
-        if(x === null) {
-            row = y;
-            col = rev ? 3-i : i;
-            direction = !rev ? 'left' : 'right';
-        }
-        else if(y === null) {
-            col = x;
-            row = rev ? 3-i : i;
-            direction = !rev ? 'up' : 'down';
-        }
-        console.log(`direction: ${direction}`);
-    }
-    return newArr;
-}
-function arrayMerge(arr, xyr = {}) {
-    const { x, y, rev } = { rev: false, ...xyr};
-    let newArr = [...arr];
-    for (let i = 0; i < (newArr.length-1); i++) {
-        if (newArr[i] > 0 && newArr[i] === newArr[i+1]) {
-            let val = newArr[i] * 2;
-            newArr[i] = val;
-            newArr[i+1] = 0;
-            
-            // GAME.stats.score += val;
-            // UI.data.scores.current = GAME.stats.score;
-            // if (UI.data.scores.current > UI.data.scores.best) {
-            //     UI.data.scores.best = UI.data.scores.current;
-            // }
-            addScore(val);
-
-            let row, col;
-            if(x === null) {
-                row = y;
-                col = rev ? 3-i : i;
-            }
-            else if(y === null) {
-                col = x;
-                row = rev ? 3-i : i;
-            }
-            GAME.specialTiles.merged.push({value: val, row, col});
-            
-            if(newArr[i] === 2048) { GAME.state.win = true; }
-        }
-    }
-    return newArr;
-}
-function arrayProcess(arr, xyr = {}) {
-    const { x, y, rev } = { x: 0, y: 0, rev: false, ...xyr};
-    let newArr = [...arr];
-    newArr = arrayCompress(newArr, {x,y,rev});
-    newArr = arrayMerge(newArr, {x,y,rev});
-    newArr = arrayCompress(newArr);
-    //console.log({x,y});
-    return newArr;
-}

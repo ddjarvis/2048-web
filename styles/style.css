@@ -73,6 +73,9 @@ footer {
 }
 
 #gameBoard {
+    overscroll-behavior: contain; /* prevents pull-to-refresh */
+    overflow: hidden;             /* disables native scrolling */
+
     .tile-bg {
         background-color: #CDC1B4;
     }
