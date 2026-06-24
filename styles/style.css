@@ -14,8 +14,8 @@ header {
 main{
     /* background-color: blue; */
     flex: 1;
-    max-width: 500px;
-    margin: 40px auto;
+    width: 90%;
+    margin: 20px auto;
     padding: 20px;
 }
 
