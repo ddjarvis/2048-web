@@ -50,7 +50,7 @@ function arrayMerge(arr, xyr = {}) {
             }
             GAME.specialTiles.merged.push({value: val, row, col});
             
-            if(newArr[i] === 2048) { GAME.state.win = true; }
+            if(newArr[i] === 2048) { Reactive.win.value = true; }
         }
     }
     return newArr;

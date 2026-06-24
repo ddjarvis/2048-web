@@ -25,3 +25,15 @@ function newGame() {
     saveData();
     updateUI();
 }
+
+function winState() {
+    document.querySelector('.gameStatus').innerText = 'You Win!';
+    console.log('You Win!');
+}
+function loseState() {
+    document.querySelector('.gameStatus').innerText = 'You Lose!';
+    console.log('You Lose!');
+}
+function resetState() {
+    document.querySelector('.gameStatus').innerText = '';
+}

@@ -50,6 +50,7 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
     });
 }
 
+/*
 function reactiveExpression(fn, ...values) {
     const result = fn(...values.map((data) => data.value));
     const dependencies = values.filter((data) => data instanceof ReactiveValue);
@@ -63,4 +64,21 @@ function reactiveExpression(fn, ...values) {
     });
 
     return reactiveValue;
+}
+    */
+   function reactiveExpression(fn, ...values) {
+    // Compute initial result
+    const result = fn(...values.map((data) => data.value));
+
+    // Create a new reactive value to hold the result
+    const rv = reactiveValue(result);
+
+    // Subscribe to each dependency
+    values.forEach((dependency) => {
+        dependency.subscribe(() => {
+            rv.value = fn(...values.map((data) => data.value));
+        });
+    });
+
+    return rv;
 }
