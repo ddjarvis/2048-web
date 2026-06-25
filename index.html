@@ -92,4 +92,12 @@
 		// Small script to set year
 		document.getElementById('year').textContent = new Date().getFullYear();
 	</script>
+	<script>
+		if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/service-worker.js')
+			.then((reg) => console.log('Service Worker registered:', reg.scope))
+			.catch((err) => console.error('SW registration failed:', err));
+		}
+	</script>
+</body>
 </html>
