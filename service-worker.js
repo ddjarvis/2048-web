@@ -8,7 +8,38 @@ async function generateCacheVersion(files) {
 }
 
 // Core assets to pre-cache
-const CORE_ASSETS = [];
+const CORE_ASSETS = [
+    '/index.html',
+    '/temp.js',
+    '/assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf',
+    '/assets/fonts/OpenSans-VariableFont_wdth,wght.ttf',
+    '/assets/icons/favicon.ico',
+    '/assets/icons/android/icon-16.png',
+    '/assets/icons/android/icon-24.png',
+    '/assets/icons/android/icon-32.png',
+    '/assets/icons/android/icon-64.png',
+    '/assets/icons/android/icon-128.png',
+    '/assets/icons/android/icon-192.png',
+    '/assets/icons/android/icon-256.png',
+    '/assets/icons/android/icon-512.png',
+    '/assets/icons/apple/apple-touch-icon.png',
+    '/assets/icons/apple/apple-touch-startup-image-640x920.png',
+    '/assets/icons/apple/apple-touch-startup-image-640x1096.png',
+    '/scripts/actions.js',
+    '/scripts/controls.js',
+    '/scripts/dataStorage.js',
+    '/scripts/events.js',
+    '/scripts/globals.js',
+    '/scripts/helpers.js',
+    '/scripts/initialize.js',
+    '/scripts/reactiveBindings.js',
+    '/scripts/reactivity.js',
+    '/scripts/ui.js',
+    '/styles/base.css',
+    '/styles/fonts.css',
+    '/styles/gameHeader.css',
+    '/styles/style.css',
+];
 
 let CACHE_NAME;
 
@@ -52,7 +83,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Audio → lazy-load
-  if (url.includes('/assets/audio/')) {
+  if (url.includes('/assets/sfx/')) {
     event.respondWith(
       caches.match(event.request).then((response) => {
         if (response) return response;
@@ -66,7 +97,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Images → stale-while-revalidate
-  if (url.includes('/assets/images/')) {
+  if (url.includes('/assets/icons/')) {
     event.respondWith(
       caches.match(event.request).then((response) => {
         const fetchPromise = fetch(event.request).then((networkResponse) => {
