@@ -37,3 +37,38 @@ function loseState() {
 function resetState() {
     document.querySelector('.gameStatus').innerText = '';
 }
+
+
+
+
+/*
+=============================================================
+                        TEST FUNCTIONS
+=============================================================
+*/
+function showAllTiles() {
+    const vals = [
+        2, 2, 4, 4,
+        8, 16, 32, 64,
+        128, 0, 512, 0,
+        1024, 0, 0, 1024,
+    ];
+    const tiles = [];
+
+    for (let i = 0; i < vals.length; i++) {
+        let col = i % 4;
+        let row = (i - col) / 4;
+        let val = vals[i];
+        BOARD[row][col] = val;
+        const obj = {
+            id: i,
+            row,
+            column: col,
+            value: val,
+        };
+        tiles.push(obj);
+    }
+
+    console.table(tiles);
+    updateUI();
+}

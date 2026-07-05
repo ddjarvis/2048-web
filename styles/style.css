@@ -133,12 +133,14 @@ footer {
 #stateArea {
     margin-top: 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    .gameStatus {
+    #stateArea .gameStatus {
         font-weight: 700;
     }
+    align-items: center;
+    justify-content: center;
 }
+
+
 
 .tile.new {
   animation: appear 0.315s ease;
@@ -156,3 +158,54 @@ footer {
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
+
+#game {
+    position: relative;
+    overflow: hidden;
+}
+
+#game::before {
+  content: "";
+  position: absolute;
+  /* transform: translate(-50%, -20%); */
+  inset: 0;
+  aspect-ratio: 1/1;
+  width: calc(100% * 1.414);
+  border-radius: 50%;
+  z-index: 999;
+   background: repeating-conic-gradient(
+    yellow 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  animation: spin 30s linear infinite;
+}
+
+
+
+/* Define the keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*
+#game::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: calc(100% * 1.414);
+  height: calc(100% * 1.414);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    yellow 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  z-index: -1;
+  animation: spin 20s linear infinite;
+}
+  */
+  
