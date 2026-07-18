@@ -47,12 +47,7 @@ function resetState() {
 =============================================================
 */
 function showAllTiles() {
-    const vals = [
-        2, 2, 4, 4,
-        8, 16, 32, 64,
-        128, 0, 512, 0,
-        1024, 0, 0, 1024,
-    ];
+    const vals = [];
     const tiles = [];
 
     for (let i = 0; i < vals.length; i++) {
