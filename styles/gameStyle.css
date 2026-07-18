@@ -228,12 +228,6 @@
     border-radius: 6px;
     transition: background-color 0.15s ease-in;
 
-    &:hover {
-        background-color: oklch(from var(--button-color-light) calc(l*0.9) calc(c*1.2) h);
-        text-shadow:
-            0px 0px 5px var(--content-color-shadow-1),
-            0px 0px 10px var(--content-color-shadow-2);
-    }
     &:active {
         background-color: var(--button-color-light);
     }
@@ -249,6 +243,12 @@
 
 
 #buttonArea #resetBtn {
+    &.spin-once {
+         background-color: oklch(from var(--button-color-light) calc(l*0.9) calc(c*1.2) h);
+         text-shadow:
+            0px 0px 5px var(--content-color-shadow-1),
+            0px 0px 10px var(--content-color-shadow-2);
+    }
     &.spin-once .icon .arrows {
         animation: spin-half 0.3s linear 1 forwards;
         transform-origin: 50% 50%;
