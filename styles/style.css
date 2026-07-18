@@ -164,10 +164,10 @@ footer {
     overflow: hidden;
 }
 
-#game::before {
+/* #game::before {
   content: "";
   position: absolute;
-  /* transform: translate(-50%, -20%); */
+  transform: translate(-50%, -20%);
   inset: 0;
   aspect-ratio: 1/1;
   width: calc(100% * 1.414);
@@ -178,19 +178,19 @@ footer {
     transparent 10deg 20deg
   );
   animation: spin 30s linear infinite;
-}
+} */
 
 
 
 /* Define the keyframes */
-@keyframes spin {
+/* @keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 /*
 #game::before {
