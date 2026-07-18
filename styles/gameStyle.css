@@ -1,3 +1,11 @@
+#game {
+    display: grid;
+    gap: 1rem;
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 #gameHeader {
     /* border: 1px solid black; */
 
