@@ -247,35 +247,12 @@
     }
 }
 
-#buttonArea button:hover {
-}
-#buttonArea button:active, #buttonArea button:active {
-    
-}
 
-
-#buttonArea .icon.reload {
-    
-    /* .arrows path {
-        fill: #03A9F4;
+#buttonArea #resetBtn {
+    &.spin-once .icon .arrows {
+        animation: spin-half 0.3s linear 1 forwards;
+        transform-origin: 50% 50%;
     }
-    .path1 {
-        fill: white;
-    }
-    .path2 {
-        fill: red;
-    }
-    .path3 {
-        fill: green;
-    }
-    .path4 {
-        fill: blue;
-    } */
-}
-
-#buttonArea #resetBtn:hover .icon .arrows {
-    animation: spin 2s linear infinite;
-    transform-origin: 50% 50%;
 }
 
 /* #game::before {
@@ -303,6 +280,14 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes spin-half {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
   }
 }
 
