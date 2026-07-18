@@ -1,3 +1,41 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: #d6b67d;
+
+  background-image:
+    linear-gradient(180deg,
+      rgba(92, 60, 35, 0.12),
+      rgba(84, 52, 32, 0.06) 40%,
+      rgba(92, 60, 35, 0.14)),
+    repeating-linear-gradient(90deg,
+      rgba(60, 35, 20, 0.45) 0,
+      rgba(60, 35, 20, 0.45) 2px,
+      transparent 2px,
+      transparent 18px),
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 42px),
+    radial-gradient(circle at 18% 24%,
+      rgba(255, 255, 255, 0.14),
+      transparent 16%),
+    radial-gradient(circle at 72% 70%,
+      rgba(0, 0, 0, 0.12),
+      transparent 22%);
+
+  background-size:
+    auto,
+    100% 180px,
+    100% 320px,
+    200px 200px,
+    180px 180px;
+
+  background-repeat: repeat;
+  background-blend-mode: multiply, overlay, overlay, normal, normal;
+}
+
 .container {
     margin: 0;
     padding: 0;
@@ -20,7 +58,7 @@ main{
 }
 
 footer {
-    background-color: #3a3a3a;
+    background-color: rgba(60, 35, 20, 0.65);
     color: #fdfdfd;
     font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 600;
