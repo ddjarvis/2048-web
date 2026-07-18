@@ -1,3 +1,11 @@
+#game {
+    display: grid;
+    gap: 1rem;
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 #gameHeader {
     /* border: 1px solid black; */
 
@@ -42,7 +50,7 @@
     }
 }
 
-#gameHeader button {
+#buttonArea button {
     color: #F9F6F2;
     background-color: #F59563;
     text-shadow: 0px 0px 5px #5a4b3c90;
@@ -55,12 +63,12 @@
     border-radius: 6px;
     transition: background-color 0.15s ease-in;
 }
-#gameHeader button:hover {
+#buttonArea button:hover {
     background-color: #F67C5F;
     text-shadow:
         0px 0px 5px #5a4b3c90
         0px 0px 10px #5a4b3caa;
 }
-#gameHeader button:active, #gameHeader button:active {
+#buttonArea button:active, #buttonArea button:active {
     background-color: #F2B179;
 }

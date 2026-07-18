@@ -37,7 +37,7 @@ const CORE_ASSETS = [
     '/scripts/ui.js',
     '/styles/base.css',
     '/styles/fonts.css',
-    '/styles/gameHeader.css',
+    '/styles/gameStyle.css',
     '/styles/style.css',
 ];
 
