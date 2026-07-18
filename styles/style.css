@@ -1,7 +1,12 @@
+html {
+  min-height: 100%;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
   background-color: #d6b67d;
+  background-position: top center;
 
   background-image:
     linear-gradient(180deg,
@@ -27,12 +32,13 @@ body {
 
   background-size:
     auto,
-    100% 180px,
-    100% 320px,
+    100% 100%,
+    100% 100%,
     200px 200px,
     180px 180px;
 
   background-repeat: repeat;
+  background-attachment: fixed;
   background-blend-mode: multiply, overlay, overlay, normal, normal;
 }
 
