@@ -1,7 +1,7 @@
 #game {
     display: grid;
     gap: 1rem;
-    width: min(100%, 520px);
+    width: clamp(280px, 90vw, 520px);
     max-width: 100%;
     margin: 0 auto;
 }
@@ -50,25 +50,261 @@
     }
 }
 
+
+
+#background{
+    --tile-gap: 2.25%;
+    
+    border: 0.3px solid #957d63;
+
+    min-width: 200px;
+    min-height: 300px;
+    height: 40%;
+    aspect-ratio: 1/1;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: var(--tile-gap);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--tile-gap);
+    
+    /* border: 0.5px solid #5a4b3c; */
+    box-shadow: 4px 5px 10px 0px #5a4b3c80;
+}
+
+#gameBoard .tile {
+    min-height: 50px;
+    min-width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+
+    display: inline-flex;       /* inline-block → inline-flex */
+    justify-content: center;    /* horizontal centering */
+    align-items: center;        /* vertical centering */
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+
+    border: 0.3px solid #957d63;
+    box-shadow: 2px 2px 5px 0px #5a4b3ca0;
+}
+
+#gameBoard {
+    overscroll-behavior: contain; /* prevents pull-to-refresh */
+    overflow: hidden;             /* disables native scrolling */
+
+    .tile-bg {
+        background-color: #CDC1B4;
+    }
+    .tile-2 {
+        background-color: #EEE4DA;
+        color: #776E65;
+    }
+    .tile-4 {
+        background-color: #EDE0C8;
+        color: #776E65;
+    }
+    .tile-8 {
+        background-color: #F2B179;
+        color: #F9F6F2;
+    }
+    .tile-16 {
+        background-color: #F59563;
+        color: #F9F6F2;
+    }
+    .tile-32 {
+        background-color: #F67C5F;
+        color: #F9F6F2;
+    }
+    .tile-64 {
+        background-color: #F65E3B;
+        color: #F9F6F2;
+    }
+    .tile-128 {
+        background-color: #EDCF72;
+        color: #F9F6F2;
+        font-size: 2.2rem;
+    }
+    .tile-256 {
+        background-color: #EDCC61;
+        color: #F9F6F2;
+        font-size: 2.2rem;
+    }
+    .tile-512 {
+        background-color: #EDC850;
+        color: #F9F6F2;
+        font-size: 2.2rem;
+    }
+    .tile-1024 {
+        background-color: #EDC53F;
+        color: #F9F6F2;
+        font-size: 1.7rem;
+    }
+    .tile-2048 {
+        background-color: #EDC22E;
+        color: #F9F6F2;
+        font-size: 1.7rem;
+    }
+}
+
+#stateArea {
+    &[data-active="true"] {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .gameStatus {
+            font-weight: 700;
+        }
+    }
+    &[data-active="false"] {
+        display: none;
+    }
+}
+
+
+
+.tile.new {
+  animation: appear 0.315s ease;
+}
+@keyframes appear {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.tile.merged {
+  animation: pop 0.3s ease;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#game {
+    position: relative;
+    overflow: hidden;
+}
+
+#buttonArea {
+    --grid-gap: 10px;
+    --grid-max-col-count: 3;
+    --grid-min-col-width: 100px;
+    --grid-max-row-height: 60px;
+
+    /* CALCULATIONS */
+    --grid-calc-col-size: calc((100% - ( var(--grid-gap) * var(--grid-max-col-count) - var(--grid-gap) )) / var(--grid-max-col-count)); 
+    --grid-calc-min-size: max(var(--grid-min-col-width), var(--grid-calc-col-size));
+
+    display: grid;
+    grid-auto-rows: var(--grid-max-row-height);
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-calc-min-size), 1fr));
+    gap: 10px; /* spacing between buttons */
+}
+
+#buttonArea .button {
+    --content-color: #F9F6F2;
+    --content-color-shadow-1: #5a4b3c90;
+    --content-color-shadow-2: #5a4b3caa;
+}
+#buttonArea .button.reset {
+    --button-color: #03A9F4;
+    --button-color-dark: #0288D1;
+    --button-color-light: #B3E5FC;
+}
+
 #buttonArea button {
-    color: #F9F6F2;
-    background-color: #F59563;
-    text-shadow: 0px 0px 5px #5a4b3c90;
+    --btn-padding: 10px;
+    background-color: var(--button-color);
+    color: var(--content-color);
+    text-shadow: 0px 0px 5px var(--content-color-shadow-1);
     font-weight: 600;
     font-size: 1.2rem;
 
-    padding: 10px;
+    padding: var(--btn-padding);
     border: 0.3px solid #957d63;
     box-shadow: 2px 2px 5px 0px #5a4b3ca0;
     border-radius: 6px;
     transition: background-color 0.15s ease-in;
+
+    &:hover {
+        background-color: oklch(from var(--button-color-light) calc(l*0.9) calc(c*1.2) h);
+        text-shadow:
+            0px 0px 5px var(--content-color-shadow-1),
+            0px 0px 10px var(--content-color-shadow-2);
+    }
+    &:active {
+        background-color: var(--button-color-light);
+    }
+    .icon {
+        width: 100%;
+        height: calc(var(--grid-max-row-height) - var(--btn-padding) * 2);
+        path {
+            fill: var(--content-color);
+            stroke: black;
+        }
+    }
 }
-#buttonArea button:hover {
-    background-color: #F67C5F;
-    text-shadow:
-        0px 0px 5px #5a4b3c90
-        0px 0px 10px #5a4b3caa;
+
+
+#buttonArea #resetBtn {
+    &.spin-once .icon .arrows {
+        animation: spin-half 0.3s linear 1 forwards;
+        transform-origin: 50% 50%;
+    }
 }
-#buttonArea button:active, #buttonArea button:active {
-    background-color: #F2B179;
+
+/* #game::before {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -20%);
+  inset: 0;
+  aspect-ratio: 1/1;
+  width: calc(100% * 1.414);
+  border-radius: 50%;
+  z-index: 999;
+   background: repeating-conic-gradient(
+    yellow 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  animation: spin 30s linear infinite;
+} */
+
+
+
+/* Define the keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+@keyframes spin-half {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+/*
+#game::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: calc(100% * 1.414);
+  height: calc(100% * 1.414);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    yellow 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  z-index: -1;
+  animation: spin 20s linear infinite;
+}
+  */
+  
