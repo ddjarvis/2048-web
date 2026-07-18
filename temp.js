@@ -33,3 +33,4 @@ function getAction() {
     window.history.replaceState({}, document.title, window.location.pathname);
 }
 getAction();
+showAllTiles();

@@ -3,8 +3,8 @@
   "short_name": "2048",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#2196F3",
+  "background_color": "#faf8ef",
+  "theme_color": "#bbada0",
   "icons": [
     {
       "src": "/assets/icons/android/icon-64.png",
