@@ -41,9 +41,12 @@
     <script defer src="./scripts/ui.js"></script>
     <script defer src="./scripts/actions.js"></script>
     <script defer src="./scripts/buttons.js"></script>
-	</style>
+	
+	
+    <link rel="stylesheet" href="./css-debug/style.css">
+    <script defer src="./css-debug/check-viewport.js"></script>
 </head>
-<body>
+<body data-css-debug="true">
 	
 	<div class="container">
 		<header>
@@ -115,5 +118,6 @@
 			.catch((err) => console.error('SW registration failed:', err));
 		}
 	</script>
+	<!-- <button class="css-debug button check-viewport">(X,Y)</button> -->
 </body>
 </html>
