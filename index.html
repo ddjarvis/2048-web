@@ -59,37 +59,41 @@
              <!-- Game will be mounted here. -->
 			<div id="game">
                 <div id="statsArea">
-					<div id="scoreBox" class="field-box">
-						<span class="score field-name">
-							Score
-						</span>
-						<span id="score-value" class="score field-value" data-reactive="score">
-							0
-						</span>
+					<div class="field-sub-box">
+						<div id="scoreBox" class="field-box">
+							<span class="score field-name">
+								Score
+							</span>
+							<span id="score-value" class="score field-value" data-reactive="score">
+								0
+							</span>
+						</div>
+						<div id="bestBox" class="field-box">
+							<span class="best field-name">
+								Best
+							</span>
+							<span id="best-value" class="best field-value" data-reactive="best">
+								0
+							</span>
+						</div>
 					</div>
-					<div id="bestBox" class="field-box">
-						<span class="best field-name">
-							Best
-						</span>
-						<span id="best-value" class="best field-value" data-reactive="best">
-							0
-						</span>
-					</div>
-					<div id="timerBox" class="field-box">
-						<span class="timer field-name">
-							Timer
-						</span>
-						<span id="timer-value" class="timer field-value" data-reactive="timer">
-							00:00
-						</span>
-					</div>
-					<div id="movesBox" class="field-box">
-						<span class="moves field-name">
-							Moves
-						</span>
-						<span id="moves-value" class="moves field-value" data-reactive="moves">
-							0
-						</span>
+					<div class="field-sub-box">
+						<div id="timerBox" class="field-box">
+							<span class="timer field-name">
+								Timer
+							</span>
+							<span id="timer-value" class="timer field-value" data-reactive="timer">
+								00:00
+							</span>
+						</div>
+						<div id="movesBox" class="field-box">
+							<span class="moves field-name">
+								Moves
+							</span>
+							<span id="moves-value" class="moves field-value" data-reactive="moves">
+								0
+							</span>
+						</div>
 					</div>
 				</div>
                 <div id="gameBoard"></div>
