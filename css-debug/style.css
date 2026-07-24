@@ -1,0 +1,22 @@
+:where(body:not([data-css-debug="true"]) .css-debug) {
+    display: none;
+}
+
+body[data-css-debug="true"] .css-debug {
+    display: inherit;
+
+    &.button {
+        background-color: blanchedalmond;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2em 0.7em;
+        border-radius: 10px;
+    }
+
+    &.button.check-viewport {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+}

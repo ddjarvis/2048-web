@@ -25,7 +25,7 @@ const UI = {
     },
     game: document.getElementById('game'),
     head: {
-        elem: document.getElementById('gameHeader'),
+        elem: document.getElementById('statsArea'),
     },
     board: {
         elem: document.getElementById('gameBoard'),

@@ -6,19 +6,34 @@
     margin: 0 auto;
 }
 
-#gameHeader {
+#statsArea {
+    --grid-gap: 10px;
+    --grid-max-col-count: 3;
+    --grid-min-col-width: 100px;
+    /* --grid-max-row-height: 60px; */
+
+    /* CALCULATIONS */
+    --grid-calc-col-size: calc((100% - ( var(--grid-gap) * var(--grid-max-col-count) - var(--grid-gap) )) / var(--grid-max-col-count)); 
+    --grid-calc-min-size: max(var(--grid-min-col-width), var(--grid-calc-col-size));
+
+    
     /* border: 1px solid black; */
 
     display: grid;
     grid-template-columns: repeat(2, 1fr) 25%;
     gap: 0.5rem;
 
+    display: grid;
+    /* grid-auto-rows: var(--grid-max-row-height); */
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-calc-min-size), 1fr));
+    gap: var(--grid-gap);
+
     margin-bottom: 1rem;
     font-family: 'Open Sans', Arial, sans-serif;
 
     cursor: default;
 }
-#gameHeader .field-box {
+#statsArea .field-box {
     background-color: #bbada0;
     border-radius: 6px;
     border: 0.3px solid #957d63;
@@ -200,7 +215,7 @@
     display: grid;
     grid-auto-rows: var(--grid-max-row-height);
     grid-template-columns: repeat(auto-fit, minmax(var(--grid-calc-min-size), 1fr));
-    gap: 10px; /* spacing between buttons */
+    gap: var(--grid-gap);
 }
 
 #buttonArea .button {
@@ -210,8 +225,18 @@
 }
 #buttonArea .button.reset {
     --button-color: #03A9F4;
-    --button-color-dark: #0288D1;
-    --button-color-light: #B3E5FC;
+    --button-color-dark: #01579B;
+    --button-color-light: #4FC3F7;
+}
+#buttonArea .button.toggle {
+    --button-color: #FFA000;
+    --button-color-dark: #F57F17;
+    --button-color-light: #FFCA28;
+}
+#buttonArea .button.show-history {
+    --button-color: #FF7043;
+    --button-color-dark: #BF360C;
+    --button-color-light: #FF8A65;
 }
 
 #buttonArea button {
@@ -242,7 +267,7 @@
 }
 
 
-#buttonArea #resetBtn {
+/* #buttonArea #resetBtn {
     &.spin-once {
          background-color: oklch(from var(--button-color-light) calc(l*0.9) calc(c*1.2) h);
          text-shadow:
@@ -253,7 +278,7 @@
         animation: spin-half 0.3s linear 1 forwards;
         transform-origin: 50% 50%;
     }
-}
+} */
 
 /* #game::before {
   content: "";
