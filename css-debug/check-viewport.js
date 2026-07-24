@@ -14,7 +14,7 @@ function createButton() {
   btn.classList.add('css-debug', 'button', 'check-viewport');
   btn.textContent = '(X,Y)';
   document.body.appendChild(btn);
-  addEventListener('click',showViewportAlert);
+  btn.addEventListener('click',showViewportAlert);
 }
 
 createButton();
