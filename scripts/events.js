@@ -16,6 +16,7 @@ function newSession() {
     Reactive.time.value = 0;
     Reactive.win.value = false;
     Reactive.lose.value = false;
+    Reactive.paused.value = false;
     GAME.specialTiles.merged = [];
     GAME.specialTiles.new = [];
     document.querySelector('#stateArea').dataset.active = 'false';
