@@ -38,9 +38,18 @@ function loseState() {
     console.log('You Lose!');
 }
 function resetState() {
+    document.querySelector('#stateArea').dataset.active = 'false';
     document.querySelector('.gameStatus').innerText = '';
 }
 
+function pauseGame() {
+    document.querySelector('#stateArea').dataset.active = 'true';
+    document.querySelector('.gameStatus').innerText = 'Game Paused';
+    console.log('Game Paused');
+}
+function resumeGame() {
+    resetState();
+}
 
 
 
