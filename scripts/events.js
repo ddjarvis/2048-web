@@ -58,6 +58,22 @@ function resumeGame() {
 }
 
 
+function autoPause() {
+    const isPaused = GAME.state.paused;
+    Reactive.paused.value = true;
+}
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        console.log('App is backgrounded or tab is hidden (VisibilityChange API)');
+        autoPause();
+    }
+});
+/* iOS Fallback */
+window.addEventListener('pagehide', (event) => {
+        console.log('App is backgrounded or tab is hidden (PageHide API)');
+        autoPause();
+});
+
 
 /*
 =============================================================
