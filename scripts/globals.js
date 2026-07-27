@@ -3,7 +3,6 @@ const GAME = {
     state: {
         win: false,
         lose: false,
-        paused: false,
     },
     stats: {
         moves: 0,

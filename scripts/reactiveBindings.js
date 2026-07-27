@@ -5,7 +5,6 @@ const Reactive = {
   time: reactiveValue(0),
   win: reactiveValue(false),
   lose: reactiveValue(false),
-  paused: reactiveValue(false),
 };
 
 bindReactiveElements(Reactive);
@@ -34,20 +33,6 @@ Reactive.time.subscribe(() => {
   const val = Reactive.time.value;
   GAME.stats.time = val;
   UI.data.time = val;
-});
-Reactive.paused.subscribe(() => {
-  const val = Reactive.paused.value;
-  const btn = document.querySelector('#togglePauseBtn');
-  console.log(`Reactive.paused: ${Reactive.paused.value}`);
-  // GAME.state.paused = val;
-  if(val) {
-    btn.innerText = 'Play';
-    pauseGame();
-  }
-  else {
-    btn.innerText = 'Pause';
-    resumeGame();
-  }
 });
 
 reactiveExpression((win,lose) => {
