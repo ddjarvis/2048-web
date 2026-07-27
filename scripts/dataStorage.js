@@ -20,8 +20,10 @@ function saveData() {
             best: Reactive.best.value,
             moves: Reactive.moves.value,
             time: Reactive.time.value,
+            timer: Reactive.timer.value,
             win: Reactive.win.value,
             lose: Reactive.lose.value,
+            paused: Reactive.paused.value,
         },
         timestamp: getDateTime(),
     };
@@ -56,6 +58,8 @@ function loadData() {
     Reactive.score.value = data.score;
     Reactive.moves.value = data.moves;
     Reactive.time.value = data.time;
+    Reactive.timer.value = data.timer || '00:00';
+    Reactive.paused.value = data.paused || (data.moves > 0 ? true : false);
 
     BOARD = board;
     console.log('loaded data!');

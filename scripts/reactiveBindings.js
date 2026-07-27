@@ -6,6 +6,8 @@ const Reactive = {
   win: reactiveValue(false),
   lose: reactiveValue(false),
   paused: reactiveValue(false),
+  time: reactiveValue(0),
+  timer: reactiveValue('00:00'),
 };
 
 bindReactiveElements(Reactive);
@@ -32,8 +34,15 @@ Reactive.moves.subscribe(() => {
 });
 Reactive.time.subscribe(() => {
   const val = Reactive.time.value;
-  GAME.stats.time = val;
-  UI.data.time = val;
+  GAME.stats.time.int = val;
+
+  let mins = Math.floor(val / 60);
+  let secs = val % 60;
+  let timer = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+
+  GAME.stats.time.str = timer;
+  UI.data.timer = timer;
+  Reactive.timer.value = timer;
 });
 Reactive.paused.subscribe(() => {
   const val = Reactive.paused.value;
