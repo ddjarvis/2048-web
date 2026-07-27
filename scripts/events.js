@@ -16,6 +16,7 @@ function newSession() {
     Reactive.time.value = 0;
     Reactive.win.value = false;
     Reactive.lose.value = false;
+    Reactive.paused.value = false;
     GAME.specialTiles.merged = [];
     GAME.specialTiles.new = [];
     document.querySelector('#stateArea').dataset.active = 'false';
@@ -38,9 +39,18 @@ function loseState() {
     console.log('You Lose!');
 }
 function resetState() {
+    document.querySelector('#stateArea').dataset.active = 'false';
     document.querySelector('.gameStatus').innerText = '';
 }
 
+function pauseGame() {
+    document.querySelector('#stateArea').dataset.active = 'true';
+    document.querySelector('.gameStatus').innerText = 'Game Paused';
+    console.log('Game Paused');
+}
+function resumeGame() {
+    resetState();
+}
 
 
 
