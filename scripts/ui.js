@@ -51,7 +51,7 @@ function updateUI_head() {
     let score = UI.data.scores.current;
     let best = UI.data.scores.best;
     let moves = UI.data.moves;
-    let time = UI.data.time;
+    let time = UI.data.timer;
     console.log({
         score,
         best,

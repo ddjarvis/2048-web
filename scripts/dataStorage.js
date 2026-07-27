@@ -20,9 +20,12 @@ function saveData() {
             best: Reactive.best.value,
             moves: Reactive.moves.value,
             time: Reactive.time.value,
+            timer: Reactive.timer.value,
             win: Reactive.win.value,
             lose: Reactive.lose.value,
+            paused: Reactive.paused.value,
         },
+        timer: GAME.timer,
         timestamp: getDateTime(),
     };
     //console.log(JSON.stringify(saveData));
@@ -37,8 +40,11 @@ function loadData() {
         return false;
     }
     
-    const {board, data, timestamp} = JSON.parse(json);
-    // console.log(data);
+    const {board, data, timer, timestamp} = JSON.parse(json);
+    console.log(board);
+    console.log(data);
+    console.log(timer);
+    console.log(timestamp);
     if (!data.best) {
         console.error('loadData stopped: no recorded best '+`(best: ${data.best})`);
         return false;
@@ -56,9 +62,14 @@ function loadData() {
     Reactive.score.value = data.score;
     Reactive.moves.value = data.moves;
     Reactive.time.value = data.time;
+    Reactive.timer.value = data.timer || '00:00';
+    Reactive.paused.value = data.paused || (data.moves > 0 ? true : false);
 
     BOARD = board;
+    GAME.board = board;
+    GAME.timer = {...timer, isRunning: data.paused};
     console.log('loaded data!');
+    saveData();
     return true;
 }
 function deleteData() {

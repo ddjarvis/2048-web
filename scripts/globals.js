@@ -7,8 +7,17 @@ const GAME = {
     },
     stats: {
         moves: 0,
-        time: 0,
+        time: {
+            int: 0,
+            str: '00:00',
+        },
         score: 0,
+    },
+    timer: {
+        elapsedMs: 0,
+        lastTimestamp: null,
+        timeoutId: null,
+        isRunning: false,
     },
     specialTiles: {
         merged: [],
@@ -23,6 +32,8 @@ const UI = {
             current: 0,
             best: 0,
         },
+        moves: 0,
+        timer: '00:00',
     },
     game: document.getElementById('game'),
     head: {
