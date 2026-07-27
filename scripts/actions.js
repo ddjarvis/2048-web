@@ -1,5 +1,5 @@
 function action(direction) {
-    if ((direction !== 'reset') && (GAME.state.win || GAME.state.lose || GAME.state.paused)) {
+    if ((direction !== 'reset') && (GAME.state.win || GAME.state.lose)) {
         return;
     }
     let action = '';

@@ -8,7 +8,3 @@ function btn_newGame(e) {
     }
     newGame();
 }
-
-function btn_togglePause(e) {
-    Reactive.paused.value = !Reactive.paused.value;
-}
