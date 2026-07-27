@@ -13,6 +13,12 @@ const GAME = {
         },
         score: 0,
     },
+    timer: {
+        elapsedMs: 0,
+        lastTimestamp: null,
+        timeoutId: null,
+        isRunning: false,
+    },
     specialTiles: {
         merged: [],
         new: [],

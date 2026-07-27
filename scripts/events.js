@@ -14,6 +14,7 @@ function newSession() {
     Reactive.moves.value = 0;
     Reactive.score.value = 0;
     Reactive.time.value = 0;
+    Reactive.moves.value = 0;
     Reactive.win.value = false;
     Reactive.lose.value = false;
     Reactive.paused.value = false;
@@ -23,9 +24,11 @@ function newSession() {
 }
 function newGame() {
     newSession();
+    clearTimer();
     addRandomTiles();
     saveData();
     updateUI();
+    startTimer();
 }
 
 function winState() {
@@ -44,12 +47,14 @@ function resetState() {
 }
 
 function pauseGame() {
+    pauseTimer();
     document.querySelector('#stateArea').dataset.active = 'true';
     document.querySelector('.gameStatus').innerText = 'Game Paused';
     console.log('Game Paused');
 }
 function resumeGame() {
     resetState();
+    resumeTimer();
 }
 
 

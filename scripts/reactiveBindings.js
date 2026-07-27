@@ -3,11 +3,10 @@ const Reactive = {
   best: reactiveValue(0),
   moves: reactiveValue(0),
   time: reactiveValue(0),
+  timer: reactiveValue('00:00'),
   win: reactiveValue(false),
   lose: reactiveValue(false),
   paused: reactiveValue(false),
-  time: reactiveValue(0),
-  timer: reactiveValue('00:00'),
 };
 
 bindReactiveElements(Reactive);
@@ -43,6 +42,7 @@ Reactive.time.subscribe(() => {
   GAME.stats.time.str = timer;
   UI.data.timer = timer;
   Reactive.timer.value = timer;
+  saveData();
 });
 Reactive.paused.subscribe(() => {
   const val = Reactive.paused.value;

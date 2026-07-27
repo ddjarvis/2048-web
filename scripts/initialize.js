@@ -101,6 +101,7 @@ function initializeGame() {
     newSession();
     if(!loadData()){
         addRandomTiles(BOARD);
+        startTimer();
     }
     console.log(BOARD);
 }

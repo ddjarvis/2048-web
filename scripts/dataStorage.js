@@ -25,6 +25,7 @@ function saveData() {
             lose: Reactive.lose.value,
             paused: Reactive.paused.value,
         },
+        timer: GAME.timer,
         timestamp: getDateTime(),
     };
     //console.log(JSON.stringify(saveData));
@@ -39,8 +40,11 @@ function loadData() {
         return false;
     }
     
-    const {board, data, timestamp} = JSON.parse(json);
-    // console.log(data);
+    const {board, data, timer, timestamp} = JSON.parse(json);
+    console.log(board);
+    console.log(data);
+    console.log(timer);
+    console.log(timestamp);
     if (!data.best) {
         console.error('loadData stopped: no recorded best '+`(best: ${data.best})`);
         return false;
@@ -62,7 +66,10 @@ function loadData() {
     Reactive.paused.value = data.paused || (data.moves > 0 ? true : false);
 
     BOARD = board;
+    GAME.board = board;
+    GAME.timer = {...timer, isRunning: data.paused};
     console.log('loaded data!');
+    saveData();
     return true;
 }
 function deleteData() {
