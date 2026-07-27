@@ -1,9 +1,15 @@
-function action(direction) {
+function action(direction, type) {
     if ((direction !== 'reset') && (GAME.state.win || GAME.state.lose || GAME.state.paused)) {
+        let reason = GAME.state.win ? 'Game Won'
+            : GAME.state.lose ? 'Game Lost'
+            : GAME.state.paused ? 'Game Paused'
+            : 'Unknown Reason';
+        console.log(`Can't Move: ${reason}`);
         return;
     }
     let action = '';
     let hasChange = false;
+    console.log(`Action: ${direction} (${type})`);
     switch (direction.toLowerCase()) {
         case 'up':
             action = 'up';
@@ -27,7 +33,7 @@ function action(direction) {
         default:
             break;
     }
-    console.log(`Action: ${action}`);
+    // console.log(`Action: ${action}`);
     if (hasChange) {
         addRandomTile();
         increaseMove();

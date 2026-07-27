@@ -39,7 +39,7 @@ Reactive.paused.subscribe(() => {
   const val = Reactive.paused.value;
   const btn = document.querySelector('#togglePauseBtn');
   console.log(`Reactive.paused: ${Reactive.paused.value}`);
-  // GAME.state.paused = val;
+  GAME.state.paused = val;
   if(val) {
     btn.innerText = 'Play';
     pauseGame();

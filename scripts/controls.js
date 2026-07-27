@@ -5,31 +5,35 @@
 */
 
 document.addEventListener("keydown", (event) => {
+    let actionType;
     switch (event.code) {
         case 'ArrowUp':
         case 'KeyW':
-            action('up');
+            actionType = 'up';
             break;
         case 'ArrowDown':
         case 'KeyS':
-            action('down');
+            actionType = 'down';
             break;
         case 'ArrowLeft':
         case 'KeyA':
-            action('left');
+            actionType = 'left';
             break;
         case 'ArrowRight':
         case 'KeyD':
-            action('right');
+            actionType = 'right';
             break;
         case 'KeyR':
-            action('reset');
+            actionType = 'reset';
             break;
         default:
             console.log(`Key: ${event.code}`);
             break
     }
-    event.preventDefault(); // stops page scrolling
+    if(actionType) {
+        action(actionType, 'kb');
+        event.preventDefault(); // stops page scrolling
+    }
 });
 
 
@@ -118,7 +122,7 @@ function handleTouchMove(evt) {
 
 function handleTouchEnd(evt) {
     // Reset values or handle end of touch event
-    action(swipeDirection);
+    action(swipeDirection, 'touch');
     console.log(`Swipe Direction: ${swipeDirection}`);
 }
 
