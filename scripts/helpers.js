@@ -4,8 +4,8 @@ function arrayCompress(arr, xyr = {}) {
         ...arr.filter(i => i > 0),
         ...Array(4).fill(0)
     ].slice(0, 4);
-    console.log(arr);
-    console.log(newArr);
+    // console.log(arr);
+    // console.log(newArr);
     if (!arraysEqual(arr,newArr)) {
         let i;
         let row, col, direction;
@@ -19,7 +19,7 @@ function arrayCompress(arr, xyr = {}) {
             row = rev ? 3-i : i;
             direction = !rev ? 'up' : 'down';
         }
-        console.log(`direction: ${direction}`);
+        // console.log(`direction: ${direction}`);
     }
     return newArr;
 }

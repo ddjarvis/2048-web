@@ -36,15 +36,15 @@ function addRandomTiles() {
 
 function checkLose() {
     let isLost = true;
-    console.group('checkLose');
+    // console.group('checkLose');
     for(let x = 0; x < 4; x++) {
         if(!isLost) { break; }
-        console.log(`x: ${x}`);
+        // console.log(`x: ${x}`);
         for(let y = 0; y < 3; y++) {
             if(!isLost) { break; }
             let valA = BOARD[x][y];
             let valB = BOARD[x][y+1];
-            console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x}][${y+1}] = ${valB}`);
+            // console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x}][${y+1}] = ${valB}`);
             if(valA === valB) { isLost = false; }
         }
     }
@@ -54,12 +54,12 @@ function checkLose() {
             if(!isLost) { break; }
             let valA = BOARD[x][y];
             let valB = BOARD[x+1][y];
-            console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x+1}][${y}] = ${valB}`);
+            // console.log(`BOARD[${x}][${y}] = ${valA}\nBOARD[${x+1}][${y}] = ${valB}`);
             if(valA === valB) { isLost = false; }
         }
     }
-    console.groupEnd('checkLose');
-    !isLost ? console.log('Not Lost!') : '';
+    // console.groupEnd('checkLose');
+    // !isLost ? console.log('Not Lost!') : '';
 
     if(isLost) {
         const emptyCells = getEmptyCells();
