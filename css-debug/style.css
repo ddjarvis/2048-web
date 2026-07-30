@@ -19,4 +19,9 @@ body[data-css-debug="true"] .css-debug {
         top: 10px;
         right: 10px;
     }
+    &.button.show-useragent {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
 }
