@@ -26,6 +26,7 @@ const CORE_ASSETS = [
     '/assets/icons/apple/apple-touch-startup-image-640x920.png',
     '/assets/icons/apple/apple-touch-startup-image-640x1096.png',
     '/scripts/actions.js',
+    '/scripts/buttons.js',
     '/scripts/controls.js',
     '/scripts/dataStorage.js',
     '/scripts/events.js',
@@ -34,11 +35,15 @@ const CORE_ASSETS = [
     '/scripts/initialize.js',
     '/scripts/reactiveBindings.js',
     '/scripts/reactivity.js',
+    '/scripts/timer.js',
     '/scripts/ui.js',
     '/styles/base.css',
     '/styles/fonts.css',
     '/styles/gameStyle.css',
     '/styles/style.css',
+    '/css-debug/style.css',
+    '/css-debug/check-viewport.js',
+    '/css-debug/show-useragent.js',
 ];
 
 let CACHE_NAME;
