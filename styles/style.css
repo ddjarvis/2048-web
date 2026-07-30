@@ -4,8 +4,43 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
+  /* background-color: #d6b67d;
+  background-position: top center; */
+
+  /* background-image:
+    linear-gradient(180deg,
+      rgba(92, 60, 35, 0.12),
+      rgba(84, 52, 32, 0.06) 40%,
+      rgba(92, 60, 35, 0.14)),
+    repeating-linear-gradient(90deg,
+      rgba(60, 35, 20, 0.45) 0,
+      rgba(60, 35, 20, 0.45) 2px,
+      transparent 2px,
+      transparent 18px),
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 42px);
+
+  background-size:
+    auto,
+    100% 100%,
+    100% 100%;
+
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-blend-mode: multiply, overlay, overlay; */
+}
+
+.page-background {
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  
   background-color: #d6b67d;
   background-position: top center;
 
@@ -31,10 +66,9 @@ body {
     100% 100%;
 
   background-repeat: repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-blend-mode: multiply, overlay, overlay;
 }
-
 .container {
     margin: 0;
     padding: 0;
@@ -42,6 +76,7 @@ body {
     display: flex;
     flex-direction: column;
     /* background-color: black; */
+    z-index: 1;
 }
 
 header {
@@ -54,6 +89,8 @@ header {
     padding: 10px 0 10px;
     background-color: rgba(42, 27, 14, 0.92);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    z-index: 1;
 }
 
 header h1 {
@@ -86,6 +123,7 @@ footer {
     .footer-name {
         font-size: 15px;
     }
+    z-index: 1;
 }
 
 
