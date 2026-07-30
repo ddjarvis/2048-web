@@ -1,4 +1,5 @@
 #game {
+    position: relative;
     display: grid;
     gap: 1rem;
     width: clamp(280px, 90vw, 520px);
@@ -108,6 +109,7 @@
 #gameBoard {
     overscroll-behavior: contain; /* prevents pull-to-refresh */
     overflow: hidden;             /* disables native scrolling */
+    anchor-name: --gameboard-anchor;
 
     .tile-bg {
         background-color: #CDC1B4;
@@ -164,8 +166,17 @@
 }
 
 #stateArea {
+    position: absolute;
+    position-anchor: --gameboard-anchor;
+
+    top: anchor(top);
+    bottom: anchor(bottom);
+    left: anchor(left);
+    right: anchor(right);
+
+    background-color: #bbada0;
+
     &[data-active="true"] {
-        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
