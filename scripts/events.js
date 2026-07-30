@@ -58,6 +58,10 @@ function resumeGame() {
 }
 
 
+function isMobile() {
+  // Checks for common mobile keywords in the User-Agent string
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 function autoPause() {
     const isPaused = GAME.state.paused;
     Reactive.paused.value = true;
@@ -72,6 +76,17 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', (event) => {
         console.log('App is backgrounded or tab is hidden (PageHide API)');
         autoPause();
+});
+window.addEventListener('blur', () => {
+    // Ignore the event if on mobile
+    if (isMobile()) {
+    return; 
+    }
+
+    // This will ONLY run on desktop
+    // console.log('Desktop window lost focus!');
+    autoPause();
+    // Pause your game, stop timers, etc.
 });
 
 
