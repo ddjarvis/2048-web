@@ -176,14 +176,15 @@
     left: anchor(left);
     right: anchor(right);
 
-    background-color: #bbada0;
+    background-color: rgba(187, 173, 160, 0.25);
+    backdrop-filter: blur(5px);
     border: 0.3px solid #957d63;
     box-shadow: 4px 5px 10px -5px #5a4b3c80;
 
     border-radius: 6px;
 
     .gameStatus {
-        font-weight: 700;
+        font-weight: 500;
         font-size: 1.5em;
         color: white;
         text-shadow:
