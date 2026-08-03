@@ -91,7 +91,6 @@ reactiveExpression((win,lose, paused) => {
       GAME.state.lose = true;
       loseState();
     }
-    hist_saveEntry();
   }
   else if (paused) {
     Reactive.state.value = 'paused';

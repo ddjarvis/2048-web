@@ -9,3 +9,13 @@ function hist_saveEntry() {
     HISTORY.push(sessionData);
     saveData();
 }
+function hist_deleteEntry(idx) {
+    const data = {...HISTORY[idx]};
+    if(!data) {
+        console.error(`hist_deleteEntry: invalid index = ${idx}`);
+        return;
+    }
+    HISTORY.splice(idx,1);
+    console.log(`Deleted HISTORY[${idx}]: `, data);
+    saveData();
+}
