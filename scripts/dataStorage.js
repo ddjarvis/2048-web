@@ -1,19 +1,6 @@
 function saveData() {
-    const getDateTime = () => {
-        const d = new Date();
-        const date = [
-            d.getFullYear(),
-            ('0' + (d.getMonth() + 1)).slice(-2),
-            ('0' + d.getDate()).slice(-2),
-        ].join('-');
-        const time = [
-            ('0' + d.getHours()).slice(-2),
-            ('0' + d.getMinutes()).slice(-2),
-            ('0' + d.getSeconds()).slice(-2),
-        ].join(':');
-        return `${date} ${time}`;
-    };
     const saveData = {
+        history: HISTORY,
         board: BOARD,
         data: {
             score: Reactive.score.value,
@@ -40,11 +27,12 @@ function loadData() {
         return false;
     }
     
-    const {board, data, timer, timestamp} = JSON.parse(json);
+    const {history, board, data, timer, timestamp} = JSON.parse(json);
     console.log(board);
     console.log(data);
     console.log(timer);
     console.log(timestamp);
+    HISTORY = history;
     if (!data.best) {
         console.error('loadData stopped: no recorded best '+`(best: ${data.best})`);
         return false;
