@@ -29,25 +29,64 @@ function reactiveValue(initialValue) {
 
 
 function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
-    const reactiveElements = document.querySelectorAll(`[data-${label}]`);
+  const getElemsWithReactiveAttribs = (label) => {
+    const prefix = `data-${label}-`;
+    const allElems = document.querySelectorAll('*');
+    const matchedElems = [...allElems].filter(el => [...el.attributes].some(attr => attr.name.startsWith(prefix)));
+    return matchedElems;
+  };
+  const toProperCase = (word) => {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+  }
+  const datasetCase = (attr, prefix) => {
+    const datasetName = attr.name.replace(prefix,'');
+    const pascalCase = datasetName.split('-').map(w => toProperCase(w)).join('');
+    const camelCase = pascalCase.replace(/^[A-Z]/, match => match.toLowerCase());
+    return { pascalCase, camelCase };
+  }
 
-    reactiveElements.forEach((element) => {
-        const name = element.dataset[label];
-        if (!ReactiveStore[name]) {
-            ReactiveStore[name] = reactiveValue('');
-        }
-        const data = ReactiveStore[name];
+  const reactiveElements = document.querySelectorAll(`[data-${label}]`);
+  const reactiveElementAttributes = getElemsWithReactiveAttribs(label);
+  
+  reactiveElements.forEach((element) => {
+      const name = element.dataset[label];
+      if (!ReactiveStore[name]) {
+          ReactiveStore[name] = reactiveValue('');
+      }
+      const data = ReactiveStore[name];
 
-        // Set up a subscription to update the element when the value changes
-        data.subscribe(() => {
-            element.innerText = data.value;
-        });
+      // Set up a subscription to update the element when the value changes
+      data.subscribe(() => {
+          element.innerText = data.value;
+      });
 
-        // Update the value when the element changes
-        element.addEventListener('input', (event) => {
-            data.value = (event.target.value);
-        });
+      // Update the value when the element changes
+      element.addEventListener('input', (event) => {
+          data.value = (event.target.value);
+      });
+  });
+
+  reactiveElementAttributes.forEach(el => {
+    const prefix = `data-${label}-`;
+    const reactiveAttribs = [...el.attributes].filter(attr => attr.name.startsWith(prefix));
+
+    reactiveAttribs.forEach(attr => {
+      const dataset = `${label}${datasetCase(attr, prefix).pascalCase}`;
+      const target = datasetCase(attr, prefix).camelCase;
+      
+      if(!ReactiveStore[target]) {
+        ReactiveStore[target] = reactiveValue('');
+      }
+      
+      const data = ReactiveStore[target];
+
+      attr.value = data.value;
+
+      data.subscribe(() => {
+          el.dataset[dataset] = data.value;
+      });
     });
+  });
 }
 
 /*
