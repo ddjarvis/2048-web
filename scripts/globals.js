@@ -5,6 +5,7 @@ const GAME = {
         win: false,
         lose: false,
         paused: false,
+        value: '',
     },
     stats: {
         moves: 0,

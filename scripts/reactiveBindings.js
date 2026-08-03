@@ -62,6 +62,11 @@ Reactive.paused.subscribe(() => {
     resumeGame();
   }
 });
+Reactive.state.subscribe(() => {
+  const val = Reactive.state.value;
+  GAME.state.value = val;
+  UI.data.state = val;
+});
 // Reactive.win.subscribe(() => {
 
 // });
@@ -86,11 +91,13 @@ reactiveExpression((win,lose, paused) => {
       GAME.state.lose = true;
       loseState();
     }
+    hist_saveEntry();
   }
   else if (paused) {
     Reactive.state.value = 'paused';
   }
   else {
+    Reactive.state.value = '';
     resetState();
   }
 },
