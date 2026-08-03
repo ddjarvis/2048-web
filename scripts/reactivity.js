@@ -39,12 +39,12 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
     return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
   }
   const datasetCase = (attr, prefix) => {
-    const datasetName = attr.name.replace(prefix,'');
+    const datasetName = (typeof attr == 'string' ? attr : attr.name).replace(prefix,'');
     const pascalCase = datasetName.split('-').map(w => toProperCase(w)).join('');
     const camelCase = pascalCase.replace(/^[A-Z]/, match => match.toLowerCase());
     return { pascalCase, camelCase };
   }
-
+  
   const reactiveElements = document.querySelectorAll(`[data-${label}]`);
   const reactiveElementAttributes = getElemsWithReactiveAttribs(label);
   
@@ -67,6 +67,27 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
   });
 
   reactiveElementAttributes.forEach(el => {
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        const prefix = `data-${label}-`;
+        // console.log('Mutation:');
+        // console.log(mutation);
+        // console.log(`mutation.type = ${mutation.type}`);
+        if (mutation.type === 'attributes' && mutation.attributeName.startsWith(prefix)) {
+          const reactiveTarget = `${datasetCase(mutation.attributeName,prefix).camelCase}`;
+          const dataset = `${label}${datasetCase(mutation.attributeName,prefix).pascalCase}`;
+          const datasetValue = mutation.target.dataset[dataset];
+          console.log('matched:', mutation.attributeName);
+          console.log('dataset:', dataset);
+          console.log('value:', datasetValue);
+          if(!ReactiveStore[reactiveTarget]) {
+            ReactiveStore[reactiveTarget] = reactiveValue('');
+          }
+          const data = ReactiveStore[reactiveTarget];
+          data.value = datasetValue;
+        }
+      }
+    });
     const prefix = `data-${label}-`;
     const reactiveAttribs = [...el.attributes].filter(attr => attr.name.startsWith(prefix));
 
@@ -86,6 +107,8 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
           el.dataset[dataset] = data.value;
       });
     });
+
+    observer.observe(el, {attributes: true});
   });
 }
 
