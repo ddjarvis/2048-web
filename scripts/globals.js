@@ -1,4 +1,5 @@
 let BOARD = [];
+const HISTORY = [];
 const GAME = {
     state: {
         win: false,
