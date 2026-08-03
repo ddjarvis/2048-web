@@ -145,6 +145,7 @@
 }
 
 #background{
+    anchor-name: --background-anchor;
     --tile-gap: 2.25%;
     
     border: 0.3px solid #957d63;
@@ -168,7 +169,7 @@
 
 #stateArea {
     position: absolute;
-    position-anchor: --gameboard-anchor;
+    position-anchor: --background-anchor;
 
     top: anchor(top);
     bottom: anchor(bottom);
@@ -176,14 +177,24 @@
     right: anchor(right);
 
     background-color: #bbada0;
+    border: 0.3px solid #957d63;
+    box-shadow: 4px 5px 10px -5px #5a4b3c80;
+
+    border-radius: 6px;
+
+    .gameStatus {
+        font-weight: 700;
+        font-size: 1.5em;
+        color: white;
+        text-shadow:
+            0px 0px 5px hsl(30, 20%, 29%),
+            0px 0px 3px #5a4b3c;
+    }
 
     &[data-active="true"] {
         display: flex;
         align-items: center;
         justify-content: center;
-        .gameStatus {
-            font-weight: 700;
-        }
     }
     &[data-active="false"] {
         display: none;
