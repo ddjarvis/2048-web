@@ -64,3 +64,46 @@ function arrayProcess(arr, xyr = {}) {
     //console.log({x,y});
     return newArr;
 }
+function toProperCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
+function convertStringToType(str) {
+  // Return as-is if it's not a string
+  if (typeof str !== 'string') return str;
+
+  const trimmed = str.trim();
+
+  // 1. Handle undefined and empty strings
+  if (trimmed === 'undefined') return undefined;
+  if (trimmed === '') return '';
+
+  // 2. Handle booleans and null
+  if (trimmed === 'true') return true;
+  if (trimmed === 'false') return false;
+  if (trimmed === 'null') return null;
+
+  // 3. Handle special numeric values
+  if (trimmed === 'NaN') return NaN;
+  if (trimmed === 'Infinity') return Infinity;
+  if (trimmed === '-Infinity') return -Infinity;
+
+  // 4. Handle standard numbers (integers, floats, scientific notation)
+  // Regex ensures we don't accidentally parse things like "123abc" or " 123 "
+  const numberRegex = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+  if (numberRegex.test(trimmed)) {
+    return Number(trimmed);
+  }
+
+  // 5. Handle Objects and Arrays (JSON strings)
+  if ((trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+      (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+    try {
+      return JSON.parse(trimmed);
+    } catch (e) {
+      // If it's invalid JSON, it falls through and returns as a string
+    }
+  }
+
+  // 6. Fallback: Return the original string
+  return str;
+}

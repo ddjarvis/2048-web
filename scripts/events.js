@@ -63,8 +63,12 @@ function isMobile() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 function autoPause() {
-    const isPaused = GAME.state.paused;
-    Reactive.paused.value = true;
+    const gameElem = document.getElementById('game');
+    const allowAutoPause = gameElem?.dataset?.autopause === 'true';
+    if(allowAutoPause) {
+        const isPaused = GAME.state.paused;
+        Reactive.paused.value = true;
+    }
 }
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
