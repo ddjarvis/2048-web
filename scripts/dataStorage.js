@@ -3,18 +3,19 @@ function saveData() {
         history: HISTORY,
         board: BOARD,
         data: {
-            score: Reactive.score.value,
-            best: Reactive.best.value,
-            moves: Reactive.moves.value,
-            time: Reactive.time.value,
-            timer: Reactive.timer.value,
-            win: Reactive.win.value,
-            lose: Reactive.lose.value,
-            paused: Reactive.paused.value,
+            // score: Reactive.score.value,
+            // best: Reactive.best.value,
+            // moves: Reactive.moves.value,
+            // time: Reactive.time.value,
+            // timer: Reactive.timer.value,
+            // win: Reactive.win.value,
+            // lose: Reactive.lose.value,
+            // paused: Reactive.paused.value,
         },
         timer: GAME.timer,
         timestamp: getDateTime(),
     };
+    Object.entries(Reactive).forEach(r => saveData.data[r[0]] = r[1].value);
     //console.log(JSON.stringify(saveData));
     localStorage.setItem('saveData',JSON.stringify(saveData));
     // console.log('saved game!');
