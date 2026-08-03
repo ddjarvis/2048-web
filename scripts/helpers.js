@@ -64,6 +64,9 @@ function arrayProcess(arr, xyr = {}) {
     //console.log({x,y});
     return newArr;
 }
+function toProperCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
 function convertStringToType(str) {
   // Return as-is if it's not a string
   if (typeof str !== 'string') return str;
