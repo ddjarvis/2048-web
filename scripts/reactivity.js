@@ -84,7 +84,7 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
             ReactiveStore[reactiveTarget] = reactiveValue('');
           }
           const data = ReactiveStore[reactiveTarget];
-          data.value = datasetValue;
+          data.value = convertStringToType(datasetValue);
         }
       }
     });
