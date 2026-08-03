@@ -1,4 +1,5 @@
 #game {
+    position: relative;
     display: grid;
     gap: 1rem;
     width: clamp(280px, 90vw, 520px);
@@ -67,27 +68,6 @@
 
 
 
-#background{
-    --tile-gap: 2.25%;
-    
-    border: 0.3px solid #957d63;
-
-    min-width: 200px;
-    min-height: 300px;
-    height: 40%;
-    aspect-ratio: 1/1;
-    background-color: #bbada0;
-    border-radius: 6px;
-    padding: var(--tile-gap);
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--tile-gap);
-    
-    /* border: 0.5px solid #5a4b3c; */
-    box-shadow: 4px 5px 10px 0px #5a4b3c80;
-}
-
 #gameBoard .tile {
     min-height: 50px;
     min-width: 50px;
@@ -108,6 +88,7 @@
 #gameBoard {
     overscroll-behavior: contain; /* prevents pull-to-refresh */
     overflow: hidden;             /* disables native scrolling */
+    anchor-name: --gameboard-anchor;
 
     .tile-bg {
         background-color: #CDC1B4;
@@ -163,15 +144,58 @@
     }
 }
 
+#background{
+    anchor-name: --background-anchor;
+    --tile-gap: 2.25%;
+    
+    border: 0.3px solid #957d63;
+
+    min-width: 200px;
+    min-height: 300px;
+    height: 40%;
+    aspect-ratio: 1/1;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: var(--tile-gap);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--tile-gap);
+    
+    /* border: 0.5px solid #5a4b3c; */
+    box-shadow: 4px 5px 10px 0px #5a4b3c80;
+}
+
+
 #stateArea {
+    position: absolute;
+    position-anchor: --background-anchor;
+
+    top: anchor(top);
+    bottom: anchor(bottom);
+    left: anchor(left);
+    right: anchor(right);
+
+    background-color: rgba(187, 173, 160, 0.25);
+    backdrop-filter: blur(5px);
+    border: 0.3px solid #957d63;
+    box-shadow: 4px 5px 10px -5px #5a4b3c80;
+
+    border-radius: 6px;
+
+    .gameStatus {
+        font-weight: 500;
+        font-size: 1.5em;
+        color: white;
+        text-shadow:
+            0px 0px 5px hsl(30, 20%, 29%),
+            0px 0px 3px #5a4b3c;
+    }
+
     &[data-active="true"] {
-        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        .gameStatus {
-            font-weight: 700;
-        }
     }
     &[data-active="false"] {
         display: none;
