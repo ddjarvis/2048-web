@@ -7,6 +7,7 @@ const Reactive = {
   win: reactiveValue(false),
   lose: reactiveValue(false),
   paused: reactiveValue(false),
+  state: reactiveValue(''),
 };
 
 bindReactiveElements(Reactive);
@@ -47,8 +48,11 @@ Reactive.time.subscribe(() => {
 Reactive.paused.subscribe(() => {
   const val = Reactive.paused.value;
   const btn = document.querySelector('#togglePauseBtn');
-  // console.log(`Reactive.paused: ${Reactive.paused.value}`);
-  GAME.state.paused = val;
+  const state = GAME.state;
+  
+  if(state.win || state.lose) return;
+
+  state.paused = val;
   if(val) {
     btn.innerText = 'Play';
     pauseGame();
@@ -59,19 +63,41 @@ Reactive.paused.subscribe(() => {
   }
 });
 
-reactiveExpression((win,lose) => {
-  if (win) {
-    GAME.state.win = true;
-    GAME.state.lose = false;
-    winState();
+reactiveExpression((win,lose, paused) => {
+  if(win || lose) {
+    if (win) {
+      Reactive.paused.value = true;
+      Reactive.lose.value = false;
+      Reactive.win.value = true;
+      Reactive.state.value = 'win';
+      GAME.state.win = true;
+      GAME.state.lose = false;
+      winState();
+    }
+    if (lose) {
+      Reactive.paused.value = true;
+      Reactive.win.value = false;
+      Reactive.lose.value = true;
+      Reactive.state.value = 'lose';
+      GAME.state.win = false;
+      GAME.state.lose = true;
+      loseState();
+    }
   }
-  else if (lose) {
-    GAME.state.win = false;
-    GAME.state.lose = true;
-    loseState();
+  else if (paused) {
+    Reactive.state.value = 'paused';
   }
   else {
     resetState();
   }
 },
-Reactive.win, Reactive.lose);
+Reactive.win, Reactive.lose, Reactive.paused);
+
+
+
+function showReactives() {
+  const group = `Show Store: Reactive`;
+  console.warn(`ReactiveStore: Reactive`);
+  Object.entries(Reactive).forEach(r => console.log(`Reactive.${r[0]}.value = ${r[1].value}`));
+  console.groupEnd(group);
+}
