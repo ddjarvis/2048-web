@@ -6,6 +6,10 @@ function hist_saveEntry() {
         state: GAME.state.value,
         datetime: getDateTime(),
     };
+
+    const isDuplicate = HISTORY.some(hist => Object.keys(sessionData).every(key => sessionData[key] == hist[key]));
+    if(isDuplicate) { return; }
+
     HISTORY.push(sessionData);
     saveData();
 }
