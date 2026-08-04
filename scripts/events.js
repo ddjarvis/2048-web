@@ -34,11 +34,13 @@ function newGame() {
 function winState() {
     document.querySelector('#stateArea').dataset.active = 'true';
     document.querySelector('.gameStatus').innerText = 'You Win!';
+    hist_saveEntry();
     console.log('You Win!');
 }
 function loseState() {
     document.querySelector('#stateArea').dataset.active = 'true';
     document.querySelector('.gameStatus').innerText = 'You Lose!';
+    hist_saveEntry();
     console.log('You Lose!');
 }
 function resetState() {

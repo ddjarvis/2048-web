@@ -20,6 +20,10 @@ function reactiveValue(initialValue) {
         }
         return true;
       }
+      if (prop === 'bypass') {
+        value = newValue;
+        return true;
+      }
       return Reflect.set(target, prop, newValue);
     }
   };
@@ -35,9 +39,6 @@ function bindReactiveElements(ReactiveStore = {}, label = 'reactive') {
     const matchedElems = [...allElems].filter(el => [...el.attributes].some(attr => attr.name.startsWith(prefix)));
     return matchedElems;
   };
-  const toProperCase = (word) => {
-    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-  }
   const datasetCase = (attr, prefix) => {
     const datasetName = (typeof attr == 'string' ? attr : attr.name).replace(prefix,'');
     const pascalCase = datasetName.split('-').map(w => toProperCase(w)).join('');

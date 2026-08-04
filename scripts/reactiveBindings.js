@@ -62,13 +62,21 @@ Reactive.paused.subscribe(() => {
     resumeGame();
   }
 });
+Reactive.state.subscribe(() => {
+  const val = Reactive.state.value;
+  GAME.state.value = val;
+  UI.data.state = val;
+});
+// Reactive.win.subscribe(() => {
 
+// });
+// Reactive.lose.subscribe(() => {});
 reactiveExpression((win,lose, paused) => {
   if(win || lose) {
     if (win) {
       Reactive.paused.value = true;
-      Reactive.lose.value = false;
-      Reactive.win.value = true;
+      Reactive.lose.bypass = false;
+      Reactive.win.bypass = true;
       Reactive.state.value = 'win';
       GAME.state.win = true;
       GAME.state.lose = false;
@@ -76,8 +84,8 @@ reactiveExpression((win,lose, paused) => {
     }
     if (lose) {
       Reactive.paused.value = true;
-      Reactive.win.value = false;
-      Reactive.lose.value = true;
+      Reactive.win.bypass = false;
+      Reactive.lose.bypass = true;
       Reactive.state.value = 'lose';
       GAME.state.win = false;
       GAME.state.lose = true;
@@ -88,6 +96,7 @@ reactiveExpression((win,lose, paused) => {
     Reactive.state.value = 'paused';
   }
   else {
+    Reactive.state.value = '';
     resetState();
   }
 },

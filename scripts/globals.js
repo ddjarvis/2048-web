@@ -1,9 +1,11 @@
 let BOARD = [];
+let HISTORY = [];
 const GAME = {
     state: {
         win: false,
         lose: false,
         paused: false,
+        value: '',
     },
     stats: {
         moves: 0,

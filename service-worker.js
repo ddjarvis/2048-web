@@ -35,6 +35,7 @@ const CORE_ASSETS = [
     '/scripts/initialize.js',
     '/scripts/reactiveBindings.js',
     '/scripts/reactivity.js',
+    '/scripts/saveHistory.js',
     '/scripts/timer.js',
     '/scripts/ui.js',
     '/styles/base.css',
